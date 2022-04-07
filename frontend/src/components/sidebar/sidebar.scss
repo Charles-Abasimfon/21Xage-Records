@@ -1,0 +1,138 @@
+.sidebar {
+  flex: 2;
+  height: 100vh;
+  background-color: white;
+  max-height: 1000px;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  hr {
+    height: 0;
+    border: 0.5px solid lightgray;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .sidebar-top {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .sidebar-center {
+    max-height: 100%;
+    padding-top: 10px;
+    ul {
+      list-style: none;
+      margin: 0px 20px;
+      padding: 0;
+      font-size: 15px;
+
+      .title {
+        font-size: 12px;
+        font-weight: bold;
+        color: #1f2937;
+
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding-left: 20px;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+        padding-left: 20px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #86efac;
+          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+            0 1px 2px -1px rgb(0 0 0 / 0.1);
+          .sidebar-list-icon {
+            color: #14532d;
+          }
+
+          span {
+            color: #14532d;
+          }
+        }
+
+        .sidebar-list-icon {
+          color: #374151;
+        }
+
+        span {
+          font-weight: 500;
+          color: #374151;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  // For Custom Scrollbar in sidebar
+  .rcs-inner-handle {
+    background-color: lightgray;
+    width: 4px;
+  }
+
+  .sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    height: 10%;
+    min-height: 50px;
+    margin-top: 5px;
+    margin-left: 0px;
+
+    .color-mode-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .color-mode {
+      display: flex;
+      align-items: center;
+
+      .color-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        cursor: pointer;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+          0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+        &:nth-child(1) {
+          background-color: #ffffff;
+        }
+
+        &:nth-child(2) {
+          background-color: #111111;
+        }
+      }
+    }
+  }
+}

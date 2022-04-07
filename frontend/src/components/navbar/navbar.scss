@@ -1,0 +1,123 @@
+.navbar {
+  height: 81.5px;
+  display: flex;
+  align-items: center;
+  color: #1f2937;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+      border: 0.5px solid lightgray;
+      padding: 3px;
+      border-radius: 25px;
+      width: 100%;
+      max-width: 600px;
+      padding-left: 20px;
+      padding-right: 10px;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+      &:hover {
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+          0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+        .navbar-search-icon {
+          color: #14532d;
+        }
+      }
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+        max-width: 600px;
+        height: 40px;
+        padding-right: 10px;
+        font-size: 16px;
+        &::placeholder {
+          font-family: 'Outfit';
+        }
+      }
+
+      .navbar-search-icon {
+        font-size: 28px;
+        cursor: pointer;
+        color: #374151;
+      }
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+
+      .item {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        position: relative;
+
+        .navbar-user-avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+            0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .navbar-counter {
+          width: 18px;
+          height: 18px;
+          background-color: #dc2626;
+          border-radius: 50%;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+
+      .navbar-icon-container {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        cursor: pointer;
+
+        .navbar-icon {
+          font-size: 26px;
+          color: #374151;
+        }
+
+        &:hover {
+          background-color: #86efac;
+          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+            0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+          .navbar-icon {
+            color: #14532d;
+          }
+        }
+      }
+    }
+  }
+}
