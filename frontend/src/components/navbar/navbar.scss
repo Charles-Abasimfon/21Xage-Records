@@ -5,7 +5,8 @@
   color: #1f2937;
   padding-top: 10px;
   padding-bottom: 10px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  border-bottom: 2px solid lightgray;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
   .wrapper {
     width: 100%;
@@ -36,6 +37,7 @@
         }
       }
       input {
+        font-family: 'Outfit';
         border: none;
         outline: none;
         background: transparent;
@@ -66,15 +68,6 @@
         margin-right: 20px;
         position: relative;
 
-        .navbar-user-avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          object-fit: cover;
-          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
-            0 1px 2px -1px rgb(0 0 0 / 0.1);
-        }
-
         .navbar-counter {
           width: 18px;
           height: 18px;
@@ -92,6 +85,27 @@
         }
       }
 
+      .item.user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+
+        .user-name {
+          max-width: 120px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .user-icon {
+          margin-top: 2px;
+        }
+      }
+
       .navbar-icon-container {
         width: 40px;
         height: 40px;
@@ -104,12 +118,12 @@
         cursor: pointer;
 
         .navbar-icon {
-          font-size: 26px;
+          font-size: 30px;
           color: #374151;
         }
 
         &:hover {
-          background-color: #86efac;
+          background-color: #dcfce7;
           box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
             0 1px 2px -1px rgb(0 0 0 / 0.1);
 
@@ -120,4 +134,8 @@
       }
     }
   }
+}
+
+.MuiMenuItem-root {
+  font-family: inherit !important;
 }

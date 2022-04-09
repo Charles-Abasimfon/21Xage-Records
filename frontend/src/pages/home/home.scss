@@ -1,29 +1,56 @@
-.home {
+.dashboard {
   display: flex;
 
-  .home-container {
+  .dashboard-container {
     flex: 11;
     background-color: #f7f9f9;
 
-    // For Custom Scrollbar in sidebar
-    .rcs-inner-handle {
-      background-color: #6b7280;
-      width: 6px;
-    }
+    .dashboard-content {
+      height: calc(100vh - 81.5px);
 
-    .home-content {
-      max-height: 100%;
-      padding-top: 10px;
-      .widgets,
-      .charts {
-        display: flex;
-        padding: 10px 20px;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
+      .home-content {
+        max-height: 100%;
+        overflow-y: scroll;
+        padding-top: 10px;
+        margin-bottom: 1000px;
+        .widgets,
+        .charts {
+          display: flex;
+          padding: 10px 20px;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
 
-      .charts {
-        padding-bottom: 20px;
+        .charts {
+          padding-bottom: 20px;
+        }
+
+        .list-container {
+          padding-bottom: 20px;
+          .list {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            border-radius: 10px;
+            height: max-content;
+            margin: 20px;
+            margin-top: 0px;
+
+            &:hover {
+              box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+                0 2px 4px -2px rgb(0 0 0 / 0.1);
+            }
+
+            .list-title {
+              font-size: 24px;
+              font-weight: 500;
+              text-transform: uppercase;
+              color: #374151;
+              margin: 20px 0px;
+              padding-bottom: 10px;
+            }
+          }
+        }
       }
     }
   }

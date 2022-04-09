@@ -17,21 +17,21 @@
     color: #374151;
 
     .title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 500;
       text-transform: uppercase;
     }
 
     .icon {
       cursor: pointer;
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       padding: 5px;
       border-radius: 50%;
       background-color: #eef1f0;
       &:hover {
         color: #14532d;
-        background-color: #86efac;
+        background-color: #dcfce7;
       }
     }
   }

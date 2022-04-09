@@ -60,7 +60,7 @@ function Widget(props) {
           linkUrl: '/subscribers/about-to-expire',
           icon: AccessTimeIcon,
           color: '#ca8a04',
-          backgroundColor: '#fef08a',
+          backgroundColor: '#fde047',
         });
         break;
 

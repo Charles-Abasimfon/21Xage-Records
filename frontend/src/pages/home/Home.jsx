@@ -1,33 +1,65 @@
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widgets/Widget';
 import Featured from '../../components/featured/Featured';
 import Chart from '../../components/chart/Chart';
-import CustomScroll from 'react-custom-scroll';
-import 'react-custom-scroll/dist/customScroll.css';
+import Table from '../../components/table/Table';
 import './home.scss';
 
 function Home() {
+  const location = useLocation();
   return (
-    <div className='home'>
+    <div className='dashboard'>
       <Sidebar />
-      <div className='home-container'>
+      <div className='dashboard-container'>
         <Navbar />
-        <CustomScroll heightRelativeToParent={`calc(100vh - 81.5px)`}>
-          <div className='home-content'>
-            <div className='widgets'>
-              <Widget type='all-subscribers' />
-              <Widget type='active-subscribers' />
-              <Widget type='abouttoexpire-subscribers' />
-              <Widget type='expired-subscribers' />
-            </div>
+        <div className='dashboard-content'>
+          {/* ///// USE OF OUTLET ///// */}
+          <Outlet />
 
-            <div className='charts'>
-              <Featured />
-              <Chart />
+          {/* IF DASHBOARD HOME PAGE DISPLAY: */}
+          {location.pathname === '/' && (
+            <div className='home-content'>
+              <div className='widgets'>
+                <Widget type='all-subscribers' />
+                <Widget type='active-subscribers' />
+                <Widget type='abouttoexpire-subscribers' />
+                <Widget type='expired-subscribers' />
+              </div>
+              <div className='charts'>
+                <Featured />
+                <Chart />
+              </div>
+              <div className='list-container'>
+                <div className='list'>
+                  <div className='list-title'>Latest Subscribers</div>
+                  <Table />
+                </div>
+              </div>
             </div>
-          </div>
-        </CustomScroll>
+          )}
+          {location.pathname == 'home' && (
+            <div className='home-content'>
+              <div className='widgets'>
+                <Widget type='all-subscribers' />
+                <Widget type='active-subscribers' />
+                <Widget type='abouttoexpire-subscribers' />
+                <Widget type='expired-subscribers' />
+              </div>
+              <div className='charts'>
+                <Featured />
+                <Chart />
+              </div>
+              <div className='list-container'>
+                <div className='list'>
+                  <div className='list-title'>Latest Subscribers</div>
+                  <Table />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

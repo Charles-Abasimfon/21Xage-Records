@@ -1,0 +1,184 @@
+.single-subscriber {
+  max-height: 100%;
+  overflow-y: scroll;
+
+  .top {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .title-container {
+      display: flex;
+      align-items: center;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-left: 10px;
+        color: #374151;
+      }
+
+      .title-icon {
+        width: 45px;
+        height: 45px;
+        padding: 8px;
+        border-radius: 50%;
+        color: #374151;
+
+        background-color: #eef1f0;
+      }
+    }
+
+    .btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .telegram-icon {
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+        padding: 5px;
+        padding-right: 8px;
+        margin: 0px 5px;
+        margin-right: 20px;
+        margin-top: 5px;
+        color: #374151;
+        background-color: #eef1f0;
+
+        &:hover {
+          color: #1d4ed8;
+          background-color: #bfdbfe;
+        }
+      }
+
+      .btn {
+        padding: 8px 15px;
+        margin: 0px 5px;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #fff;
+        font-family: inherit;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        background-color: #166534;
+        border: 2px solid #166534;
+        text-decoration: none;
+
+        &:hover {
+          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+            0 1px 2px -1px rgb(0 0 0 / 0.1);
+          border: 2px solid #14532d;
+          background-color: #14532d;
+        }
+      }
+    }
+  }
+
+  .below-top {
+    display: flex;
+    padding: 10px;
+    gap: 30px;
+    padding-bottom: 10px;
+
+    .left {
+      flex: 3;
+      background-color: white;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      border-radius: 10px;
+      padding: 20px;
+
+      &:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+
+      .item {
+        .details {
+          .item-title {
+            margin-bottom: 10px;
+            color: #111827;
+          }
+
+          .detail-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+
+            .item-key {
+              font-weight: 500;
+              color: #374151;
+              margin-right: 5px;
+              text-transform: uppercase;
+            }
+
+            .item-value {
+              font-weight: 300;
+              font-size: 20px;
+            }
+
+            .item-value.status {
+              text-transform: capitalize;
+              padding: 5px 10px;
+              border-radius: 10px;
+              max-width: max-content;
+              font-weight: 400;
+              &.active {
+                color: #14532d;
+                background-color: #86efac;
+              }
+              &.pending {
+                color: #a16207;
+                background-color: #fde047;
+              }
+              &.expired {
+                color: #b91c1c;
+                background-color: #fda4af;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      flex: 2;
+      background-color: white;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      border-radius: 10px;
+      padding: 20px;
+
+      &:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+
+      .extra-info {
+        margin-bottom: 10px;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+
+        .item-key {
+          font-weight: 500;
+          color: #374151;
+          margin-right: 5px;
+          text-transform: uppercase;
+        }
+
+        .item-value {
+          font-weight: 300;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

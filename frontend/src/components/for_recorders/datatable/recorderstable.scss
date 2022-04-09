@@ -1,0 +1,59 @@
+.datatable {
+  height: 100%;
+
+  .datatable-grid {
+    font-family: inherit;
+    font-size: 15px;
+  }
+
+  .css-levciy-MuiTablePagination-displayedRows {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .recorder-status-container {
+    padding: 5px 10px;
+    border-radius: 5px;
+    max-width: max-content;
+    &.active {
+      color: #14532d;
+      background-color: #86efac;
+    }
+    &.suspended {
+      color: #b91c1c;
+      background-color: #fda4af;
+    }
+  }
+
+  .edit-icon {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 7px;
+    margin: 0px 5px;
+    color: #374151;
+    background-color: #eef1f0;
+
+    &:hover {
+      color: #14532d;
+      background-color: #dcfce7;
+    }
+  }
+
+  .view-icon {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 7px;
+    margin: 0px 5px;
+    margin-left: 0px;
+    color: #374151;
+    background-color: #eef1f0;
+
+    &:hover {
+      color: #14532d;
+      background-color: #dcfce7;
+    }
+  }
+}

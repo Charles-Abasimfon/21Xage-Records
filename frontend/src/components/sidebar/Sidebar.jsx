@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CheckIcon from '@mui/icons-material/Check';
@@ -12,6 +13,8 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import AddReactionIcon from '@mui/icons-material/AddReaction';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import logo from '../../assets/logo/21xage.webp';
 import CustomScroll from 'react-custom-scroll';
 import 'react-custom-scroll/dist/customScroll.css';
@@ -32,58 +35,108 @@ function Sidebar() {
         <div className='sidebar-center'>
           <ul>
             <p className='title'>MAIN</p>
-            <li>
+            <NavLink
+              to='/'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <DashboardIcon className='sidebar-list-icon' />
               <span>Dashboard</span>
-            </li>
+            </NavLink>
             <p className='title'>SUBSCRIBERS</p>
-            <li>
+            <NavLink
+              to='/subscribers/all'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <PeopleAltOutlinedIcon className='sidebar-list-icon' />
               <span>All Subscribers</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/subscribers/active'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <CheckIcon className='sidebar-list-icon' />
               <span>Active</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/subscribers/about-to-expire'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <AccessTimeIcon className='sidebar-list-icon' />
               <span>About To Expire</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/subscribers/expired'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <ClearIcon className='sidebar-list-icon' />
               <span>Expired</span>
-            </li>
+            </NavLink>
+            <NavLink
+              to='/subscribers/add-new'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
+              <AddReactionIcon className='sidebar-list-icon' />
+              <span>Add Subscriber</span>
+            </NavLink>
             <p className='title'>RECORDERS</p>
-            <li>
+            <NavLink
+              to='/recorders/all'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <BadgeOutlinedIcon className='sidebar-list-icon' />
               <span>Recorders</span>
-            </li>
+            </NavLink>
+            <NavLink
+              to='/recorders/add-new'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
+              <AddTaskIcon className='sidebar-list-icon' />
+              <span>Add Recorder</span>
+            </NavLink>
             <p className='title'>SYSTEM</p>
-            <li>
+            <NavLink
+              to='/notifications'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <NotificationsActiveOutlinedIcon className='sidebar-list-icon' />
               <span>Notifications</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/system-health'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <SettingsSuggestOutlinedIcon className='sidebar-list-icon' />
               <span>System Health</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/logs'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <SummarizeOutlinedIcon className='sidebar-list-icon' />
               <span>Logs</span>
-            </li>
-            <li>
+            </NavLink>
+            <NavLink
+              to='/settings'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <SettingsOutlinedIcon className='sidebar-list-icon' />
               <span>Settings</span>
-            </li>
+            </NavLink>
             <p className='title'>USER</p>
-            <li>
+            <NavLink
+              to='/my-profile'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <AccountCircleOutlinedIcon className='sidebar-list-icon' />
-              <span>Profile</span>
-            </li>
-            <li>
+              <span>My Profile</span>
+            </NavLink>
+            <NavLink
+              to='/logout'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               <LogoutOutlinedIcon className='sidebar-list-icon' />
               <span>Logout</span>
-            </li>
+            </NavLink>
             <br />
           </ul>
         </div>

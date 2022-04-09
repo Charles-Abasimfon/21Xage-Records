@@ -1,0 +1,96 @@
+.subscribers-list-page-content {
+  height: calc(100% - 50px);
+  padding-top: 10px;
+
+  .top {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .title-container {
+      display: flex;
+      align-items: center;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-left: 10px;
+      }
+
+      .title-icon {
+        width: 45px;
+        height: 45px;
+        padding: 8px;
+        border-radius: 50%;
+      }
+    }
+
+    .title-container.all-subscribers {
+      h2 {
+        color: #14532d;
+      }
+      .title-icon {
+        color: #14532d;
+        background-color: #dcfce7;
+      }
+    }
+
+    .title-container.active-subscribers {
+      h2 {
+        color: #14532d;
+      }
+      .title-icon {
+        color: #14532d;
+        background-color: #dcfce7;
+      }
+    }
+
+    .title-container.abouttoexpire-subscribers {
+      h2 {
+        color: #eab308;
+      }
+      .title-icon {
+        color: #eab308;
+        background-color: #fef08a;
+      }
+    }
+
+    .title-container.expired {
+      h2 {
+        color: #b91c1c;
+      }
+      .title-icon {
+        color: #b91c1c;
+        background-color: #fda4af;
+      }
+    }
+
+    .btn {
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      background-color: #166534;
+      border: 2px solid #166534;
+      text-decoration: none;
+
+      &:hover {
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+          0 1px 2px -1px rgb(0 0 0 / 0.1);
+        border: 2px solid #14532d;
+        background-color: #14532d;
+      }
+    }
+  }
+}

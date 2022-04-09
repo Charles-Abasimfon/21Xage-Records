@@ -50,15 +50,26 @@
         padding-left: 20px;
       }
 
-      li {
+      a {
         display: flex;
         align-items: center;
         padding: 5px;
         cursor: pointer;
         padding-left: 20px;
         border-radius: 5px;
+        text-decoration: none;
 
-        &:hover {
+        .sidebar-list-icon {
+          color: #374151;
+        }
+
+        span {
+          font-weight: 500;
+          color: #374151;
+          margin-left: 10px;
+        }
+
+        &.active {
           background-color: #86efac;
           box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
             0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -71,21 +82,36 @@
           }
         }
 
-        .sidebar-list-icon {
-          color: #374151;
-        }
+        &:hover {
+          background-color: #f0fdf4;
+          box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+          .sidebar-list-icon {
+            color: #14532d;
+          }
 
-        span {
-          font-weight: 500;
-          color: #374151;
-          margin-left: 10px;
+          span {
+            color: #14532d;
+          }
+
+          &.active {
+            background-color: #86efac;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+              0 1px 2px -1px rgb(0 0 0 / 0.1);
+            .sidebar-list-icon {
+              color: #14532d;
+            }
+
+            span {
+              color: #14532d;
+            }
+          }
         }
       }
     }
   }
   // For Custom Scrollbar in sidebar
   .rcs-inner-handle {
-    background-color: lightgray;
+    background-color: #6b7280;
     width: 4px;
   }
 
