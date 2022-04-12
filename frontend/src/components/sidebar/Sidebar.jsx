@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { DarkModeContext } from '../../context/dark_mode/darkModeContext';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CheckIcon from '@mui/icons-material/Check';
@@ -17,10 +19,15 @@ import AddReactionIcon from '@mui/icons-material/AddReaction';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import logo from '../../assets/logo/21xage.webp';
 import CustomScroll from 'react-custom-scroll';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { logout } from '../../context/authContext/AuthActions';
 import 'react-custom-scroll/dist/customScroll.css';
 import './sidebar.scss';
 
 function Sidebar() {
+  const { dispatch } = useContext(DarkModeContext);
+  const { admin, dispatch: authDispatch } = useContext(AuthContext);
+
   return (
     <div className='sidebar'>
       <div className='sidebar-top'>
@@ -58,11 +65,11 @@ function Sidebar() {
               <span>Active</span>
             </NavLink>
             <NavLink
-              to='/subscribers/about-to-expire'
+              to='/subscribers/almost-expired'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
             >
               <AccessTimeIcon className='sidebar-list-icon' />
-              <span>About To Expire</span>
+              <span>Almost Expired</span>
             </NavLink>
             <NavLink
               to='/subscribers/expired'
@@ -78,21 +85,29 @@ function Sidebar() {
               <AddReactionIcon className='sidebar-list-icon' />
               <span>Add Subscriber</span>
             </NavLink>
-            <p className='title'>RECORDERS</p>
-            <NavLink
-              to='/recorders/all'
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
-            >
-              <BadgeOutlinedIcon className='sidebar-list-icon' />
-              <span>Recorders</span>
-            </NavLink>
-            <NavLink
-              to='/recorders/add-new'
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
-            >
-              <AddTaskIcon className='sidebar-list-icon' />
-              <span>Add Recorder</span>
-            </NavLink>
+            {admin.admin_level && admin.admin_level === 'Administrator' && (
+              <>
+                <p className='title'>RECORDERS</p>
+                <NavLink
+                  to='/recorders/all'
+                  className={({ isActive }) =>
+                    isActive ? 'active' : undefined
+                  }
+                >
+                  <BadgeOutlinedIcon className='sidebar-list-icon' />
+                  <span>Recorders</span>
+                </NavLink>
+                <NavLink
+                  to='/recorders/add-new'
+                  className={({ isActive }) =>
+                    isActive ? 'active' : undefined
+                  }
+                >
+                  <AddTaskIcon className='sidebar-list-icon' />
+                  <span>Add Recorder</span>
+                </NavLink>
+              </>
+            )}
             <p className='title'>SYSTEM</p>
             <NavLink
               to='/notifications'
@@ -124,19 +139,16 @@ function Sidebar() {
             </NavLink>
             <p className='title'>USER</p>
             <NavLink
-              to='/my-profile'
+              to='/profile'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
             >
               <AccountCircleOutlinedIcon className='sidebar-list-icon' />
               <span>My Profile</span>
             </NavLink>
-            <NavLink
-              to='/logout'
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
-            >
+            <button onClick={() => authDispatch(logout())}>
               <LogoutOutlinedIcon className='sidebar-list-icon' />
               <span>Logout</span>
-            </NavLink>
+            </button>
             <br />
           </ul>
         </div>
@@ -146,10 +158,15 @@ function Sidebar() {
         <p className='color-mode-title'>COLOR MODE</p>
         <div className='color-mode'>
           <div className='color-option'>
-            <LightModeOutlinedIcon />
+            <LightModeOutlinedIcon
+              onClick={() => dispatch({ type: 'LIGHT_MODE' })}
+            />
           </div>
           <div className='color-option'>
-            <DarkModeOutlinedIcon style={{ color: '#fff' }} />
+            <DarkModeOutlinedIcon
+              style={{ color: '#fff' }}
+              onClick={() => dispatch({ type: 'DARK_MODE' })}
+            />
           </div>
         </div>
       </div>

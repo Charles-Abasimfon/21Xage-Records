@@ -3,7 +3,7 @@
 
   .datatable-grid {
     font-family: inherit;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .css-levciy-MuiTablePagination-displayedRows {
@@ -16,6 +16,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     max-width: max-content;
+    font-weight: 500;
     &.active {
       color: #14532d;
       background-color: #86efac;

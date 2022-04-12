@@ -1,0 +1,491 @@
+/* DARK MODE CSS SETTINGS */
+
+/* -----------  INDEX  ------------- */
+/* 1. GLOBALS & VARIABLES*/
+/* 2. NAVBAR */
+/* 3. SIDEBAR */
+/* 4. WIDGETS */
+/* 5. FEATURED */
+/* 6. CHART */
+/* 7. TABLE */
+/* 8. DATATABLE */
+/* 9. ADD SUBSCRIBER PAGE, ADD RECORDER PAGE, EDIT SUBSCRIBER PAGE, EDIT RECORDER PAGE, EDIT PROFILE PAGE */
+/* 10. VIEW SUBSCRIBER PAGE*/
+/* 11. LOGIN PAGE */
+/* 12. VIEW RECORDER PAGE & PROFILE PAGE */
+/* --------------------------------- */
+
+/* 1. GLOBALS & VARIABLES*/
+$dark-bg-color: #1f2128;
+$dark-card-color: #242731;
+$dark-text-color: #e7eef8;
+$dark-text-gray-color: #d1d5db;
+$dark-seconday-gray: #6b7280;
+.app.dark {
+  background-color: $dark-bg-color !important;
+}
+
+.app.dark {
+  // SCROLLBAR
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $dark-bg-color;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #111;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }
+
+  /* 2. NAVBAR */
+  .navbar {
+    background-color: $dark-card-color;
+    border-bottom: 2px solid $dark-bg-color;
+    .wrapper {
+      .search {
+        background-color: $dark-bg-color;
+        border: 0.5px solid $dark-bg-color;
+        input {
+          color: $dark-text-color;
+          &::placeholder {
+            color: $dark-text-gray-color;
+          }
+        }
+
+        .navbar-search-icon {
+          color: $dark-text-gray-color;
+        }
+      }
+
+      .items {
+        .item.user {
+          .user-name {
+            color: $dark-text-color;
+          }
+          .user-icon {
+            color: $dark-text-color;
+          }
+        }
+
+        .navbar-icon-container {
+          background-color: $dark-bg-color;
+          .navbar-icon {
+            font-size: 30px;
+            color: $dark-text-gray-color;
+          }
+          &:hover {
+            background-color: #dcfce7;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+              0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+            .navbar-icon {
+              color: #14532d;
+            }
+          }
+        }
+      }
+    }
+  }
+  /* 3. SIDEBAR */
+  .sidebar {
+    background-color: $dark-card-color;
+    hr {
+      border: 0.5px solid $dark-bg-color;
+    }
+    .sidebar-center {
+      ul {
+        .title {
+          color: $dark-seconday-gray;
+        }
+        a,
+        button {
+          .sidebar-list-icon {
+            color: $dark-text-gray-color;
+          }
+          span {
+            color: $dark-text-gray-color;
+          }
+          &.active {
+            background-color: #86efac;
+            .sidebar-list-icon {
+              color: #14532d;
+            }
+            span {
+              color: #14532d;
+            }
+          }
+          &:hover {
+            background-color: $dark-bg-color;
+            .sidebar-list-icon {
+              color: $dark-text-gray-color;
+            }
+            span {
+              color: $dark-text-gray-color;
+            }
+            &.active {
+              background-color: #86efac;
+              .sidebar-list-icon {
+                color: #14532d;
+              }
+              span {
+                color: #14532d;
+              }
+            }
+          }
+        }
+      }
+    }
+    .sidebar-bottom {
+      .color-mode-title {
+        color: $dark-seconday-gray;
+      }
+      .color-mode {
+        .color-option {
+          &:nth-child(1) {
+            background-color: #ffffff;
+          }
+          &:nth-child(2) {
+            background-color: #111111;
+          }
+        }
+      }
+    }
+  }
+
+  /* 4. WIDGETS */
+  .widget {
+    background-color: $dark-card-color;
+    .title,
+    .counter {
+      color: $dark-text-color;
+    }
+
+    .link {
+      color: $dark-text-gray-color;
+      &:hover {
+        color: #14532d;
+        background-color: #dcfce7;
+      }
+    }
+  }
+
+  /* 5. FEATURED */
+  .featured {
+    background-color: $dark-card-color;
+    .top {
+      color: $dark-text-color;
+      .icon {
+        color: $dark-text-color;
+        background-color: $dark-bg-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
+      }
+    }
+
+    .bottom {
+      color: $dark-text-color;
+      .title {
+        color: $dark-text-color;
+      }
+      .desc {
+        color: $dark-text-gray-color;
+      }
+      .summary .item .item-title {
+        color: $dark-text-color;
+      }
+    }
+  }
+
+  /* 6. CHART */
+  .chart {
+    background-color: $dark-card-color;
+    .title {
+      color: $dark-text-color;
+    }
+    text {
+      fill: $dark-text-gray-color;
+    }
+    line {
+      stroke: $dark-seconday-gray;
+    }
+  }
+
+  /* 7. TABLE */
+  // HOME
+  .css-1ex1afd-MuiTableCell-root {
+    font-weight: 300;
+  }
+  .list-container {
+    .list {
+      padding: 20px;
+      background-color: $dark-card-color !important;
+    }
+    .list-title {
+      color: $dark-text-color !important;
+    }
+  }
+  .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+    background-color: $dark-card-color !important;
+  }
+  table {
+    background-color: $dark-bg-color !important;
+    color: $dark-text-color;
+
+    .table-cell {
+      color: #ffffff;
+      border-color: $dark-card-color;
+      &.buttons {
+        .telegram-icon {
+          color: $dark-text-color;
+          background-color: $dark-card-color;
+          &:hover {
+            color: #1d4ed8;
+            background-color: #bfdbfe;
+          }
+        }
+
+        .edit-icon {
+          color: $dark-text-color;
+          background-color: $dark-card-color;
+          &:hover {
+            color: #14532d;
+            background-color: #dcfce7;
+          }
+        }
+
+        .view-icon {
+          color: $dark-text-color;
+          background-color: $dark-card-color;
+          &:hover {
+            color: #14532d;
+            background-color: #dcfce7;
+          }
+        }
+      }
+    }
+  }
+
+  /* 8. DATATABLE */
+  .datatable {
+    background-color: $dark-bg-color;
+
+    .datatable-grid {
+      color: #ffffff;
+      font-weight: 200;
+      border: 1px solid $dark-bg-color;
+      font-size: 16px;
+
+      .css-levciy-MuiTablePagination-displayedRows,
+      .MuiTablePagination-actions * {
+        color: $dark-text-gray-color;
+      }
+
+      .MuiDataGrid-columnHeaders,
+      .MuiDataGrid-cell {
+        border-bottom: 1px solid $dark-card-color;
+      }
+
+      .MuiDataGrid-footerContainer {
+        border-top: 1px solid $dark-card-color;
+      }
+
+      .MuiButtonBase-root {
+        color: $dark-text-gray-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
+      }
+
+      .telegram-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #1d4ed8;
+          background-color: #bfdbfe;
+        }
+      }
+      .edit-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
+      }
+      .view-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
+      }
+    }
+  }
+
+  /* 9. ADD SUBSCRIBER PAGE, ADD RECORDER PAGE, EDIT SUBSCRIBER PAGE, EDIT RECORDER PAGE, EDIT PROFILE PAGE */
+  .add-subscriber-container,
+  .add-recorder-container,
+  .edit-subscriber-container,
+  .edit-recorder-container,
+  .edit-profile-container {
+    .bottom {
+      background-color: $dark-card-color;
+      form {
+        .form-group {
+          label {
+            color: $dark-text-gray-color;
+          }
+          input,
+          textarea {
+            border: 1px solid $dark-bg-color;
+            color: $dark-text-color;
+            background-color: $dark-bg-color;
+
+            &::placeholder {
+              color: $dark-seconday-gray;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* 10. VIEW SUBSCRIBER PAGE AND VIEW RECORDER PAGE*/
+  .single-subscriber {
+    .below-top {
+      .left {
+        background-color: $dark-card-color;
+        .item {
+          .details {
+            .item-title {
+              color: $dark-text-gray-color;
+            }
+            .detail-item {
+              .item-key {
+                color: $dark-seconday-gray;
+              }
+              .item-value {
+                color: $dark-text-color;
+              }
+              .item-value.status {
+                &.active {
+                  color: #14532d;
+                  background-color: #86efac;
+                }
+                &.pending {
+                  color: #a16207;
+                  background-color: #fde047;
+                }
+                &.expired {
+                  color: #b91c1c;
+                  background-color: #fda4af;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        background-color: $dark-card-color;
+        .extra-info {
+          .item-key {
+            color: $dark-seconday-gray;
+          }
+          .item-value {
+            color: $dark-text-color;
+          }
+        }
+      }
+    }
+  }
+
+  /* 11. LOGIN PAGE */
+  .login-container {
+    background-color: $dark-bg-color;
+    .colormode-icon-container {
+      background-color: $dark-card-color;
+      .colormode-icon {
+        color: $dark-text-color;
+      }
+      &:hover {
+        background-color: #dcfce7;
+        .colormode-icon {
+          color: #14532d;
+        }
+      }
+    }
+    .forgot-password,
+    .need-help {
+      color: $dark-seconday-gray;
+      &:hover {
+        color: $dark-text-gray-color;
+      }
+    }
+    .login-form-container {
+      background-color: $dark-card-color;
+      .form-title {
+        color: $dark-text-gray-color;
+      }
+      form {
+        .form-group {
+          label {
+            color: $dark-text-gray-color;
+          }
+          input {
+            border: 1px solid $dark-bg-color;
+            color: $dark-text-color;
+            background-color: $dark-bg-color;
+          }
+        }
+      }
+    }
+  }
+
+  /* 12. VIEW RECORDER PAGE & PROFILE PAGE */
+  .single-recorder,
+  .profile {
+    .below-top {
+      .card {
+        background-color: $dark-card-color;
+        .item {
+          .details {
+            .item-title {
+              color: $dark-text-gray-color;
+            }
+            .detail-item {
+              .item-key {
+                color: $dark-seconday-gray;
+              }
+              .item-value {
+                color: $dark-text-color;
+              }
+              .item-value.recorder-status,
+              .item-value.status {
+                &.active {
+                  color: #14532d;
+                  background-color: #86efac;
+                }
+
+                &.suspended {
+                  color: #b91c1c !important;
+                  background-color: #fda4af;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,13 +7,15 @@ import Chart from '../../components/chart/Chart';
 import Table from '../../components/table/Table';
 import './home.scss';
 
-function Home() {
+function Home(props) {
   const location = useLocation();
+  const { appRef } = props;
+
   return (
     <div className='dashboard'>
       <Sidebar />
       <div className='dashboard-container'>
-        <Navbar />
+        <Navbar appRef={appRef} />
         <div className='dashboard-content'>
           {/* ///// USE OF OUTLET ///// */}
           <Outlet />

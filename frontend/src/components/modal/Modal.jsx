@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -21,6 +21,7 @@ const modalStyle = {
 /* MODAL COMPONENT REQUIRES THE FOLLOWING PROPS: displayModal, setDisplayModal, type, userId -- Check other instances link the SingleRecorder Page for a good illustration of how to call Modal child component */
 
 function ModalComponent(props) {
+  const modalContainerRef = useRef();
   const [modalContents, setModalContents] = useState({
     title: '',
     text: '',
@@ -74,8 +75,9 @@ function ModalComponent(props) {
   }, [type]);
 
   return (
-    <div className='modal'>
+    <div className='modal' ref={modalContainerRef}>
       <Modal
+        container={modalContainerRef.current}
         aria-labelledby='modal-title'
         aria-describedby='modal-description'
         open={displayModal}

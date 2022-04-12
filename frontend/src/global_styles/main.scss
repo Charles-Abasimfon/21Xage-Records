@@ -1,19 +1,19 @@
 /*//////////// GLOBALS //////////////*/
 body {
-  font-family: 'Outfit', sans-serif;
   font-weight: 400;
   max-width: 100vw;
   overflow: hidden;
+  background-color: #f7f9f9;
+}
+
+.app {
+  background-color: #f7f9f9 !important;
 }
 
 * {
+  font-family: 'Outfit', sans-serif !important;
   box-sizing: border-box;
   margin: 0;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
 }
 
 ::-webkit-scrollbar {

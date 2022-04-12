@@ -47,7 +47,7 @@ const columns = [
             <EditIcon className='edit-icon' />
           </Link>
           <a
-            href={`https://telegram.me/${params.row.status.telegram}`}
+            href={`https://telegram.me/${params.row.telegram}`}
             target='_blank'
           >
             <TelegramIcon className='telegram-icon' />

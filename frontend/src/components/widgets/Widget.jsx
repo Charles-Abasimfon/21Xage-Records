@@ -57,7 +57,7 @@ function Widget(props) {
         setWidgetDetails({
           title: 'About to expire',
           linkText: 'View list',
-          linkUrl: '/subscribers/about-to-expire',
+          linkUrl: '/subscribers/almost-expire',
           icon: AccessTimeIcon,
           color: '#ca8a04',
           backgroundColor: '#fde047',

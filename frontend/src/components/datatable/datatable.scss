@@ -1,9 +1,23 @@
 .datatable {
   height: 100%;
+  * {
+    font-family: 'Outfit', sans-serif !important;
+    box-sizing: border-box;
+    margin: 0;
+  }
 
   .datatable-grid {
     font-family: inherit;
-    font-size: 15px;
+    font-size: 16px;
+
+    .MuiButtonBase-root {
+      color: #374151;
+      background-color: #eef1f0;
+      &:hover {
+        color: #14532d;
+        background-color: #dcfce7;
+      }
+    }
   }
 
   .css-levciy-MuiTablePagination-displayedRows {
@@ -16,6 +30,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     max-width: max-content;
+    font-weight: 500;
     &.active {
       color: #14532d;
       background-color: #86efac;

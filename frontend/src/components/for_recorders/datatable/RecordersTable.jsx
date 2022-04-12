@@ -11,7 +11,7 @@ const columns = [
   { field: 'name', headerName: 'Name', width: 180 },
   { field: 'email', headerName: 'Email', width: 200 },
   { field: 'phone', headerName: 'Phone', width: 160 },
-  { field: 'telegram', headerName: 'Telegram', width: 100 },
+  { field: 'telegram', headerName: 'Telegram', width: 110 },
   {
     field: 'status',
     headerName: 'Status',
@@ -29,17 +29,16 @@ const columns = [
     },
   },
   {
-    field: 'activity_count',
-    headerName: 'Activity Count',
-    desc: 'This is the number of times a recorder has added a new subscriber or updated one.',
-    width: 140,
+    field: 'added',
+    headerName: 'Added',
+    width: 150,
   },
   {
     field: 'actions',
     headerName: 'Actions',
     sortable: false,
     filterable: false,
-    width: 150,
+    width: 120,
     renderCell: (params) => {
       return (
         <>

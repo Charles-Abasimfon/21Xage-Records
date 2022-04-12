@@ -148,7 +148,7 @@ function List() {
             <TableCell className='table-cell'>Telegram</TableCell>
             <TableCell className='table-cell'>Status</TableCell>
             <TableCell className='table-cell'>Last Subscription</TableCell>
-            <TableCell className='table-cell'></TableCell>
+            <TableCell className='table-cell'>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

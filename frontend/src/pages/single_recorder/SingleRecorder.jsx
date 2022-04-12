@@ -21,7 +21,7 @@ function SingleRecorder() {
       country: 'USA',
       activity_count: '10',
       added: '2018-01-01',
-      additionalInfo:
+      additional_info:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam numquam laudantium, laboriosam rerum ipsa asperiores minima dolorem pariatur quisquam! Fugiat labore temporibus quo officiis sunt vel debitis modi vero rerum officia, consectetur harum eius, necessitatibus quidem! Quibusdam, architecto! Reiciendis, ducimus deserunt. Quo enim exercitationem, nostrum cumque odit id vel blanditiis.',
     });
   }, []);
@@ -88,7 +88,7 @@ function SingleRecorder() {
       />
 
       <div className='below-top'>
-        <div className='left'>
+        <div className='card'>
           <div className='item'>
             <div className='details'>
               <h1 className='item-title'>{recorderInfo.name}</h1>
@@ -137,12 +137,6 @@ function SingleRecorder() {
                 <span className='item-value'>{recorderInfo.added}</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div className='right'>
-          <div className='extra-info'>
-            <span className='item-key'>Additional Info/Tags:</span>
-            <span className='item-value'>{recorderInfo.additionalInfo}</span>
           </div>
         </div>
       </div>

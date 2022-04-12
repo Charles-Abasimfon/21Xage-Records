@@ -13,8 +13,12 @@ const connectDB = require('./config/db');
 connectDB();
 
 /* ROUTES -- START */
-app.use('/api/demos', require('./routes/demoRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
+//IMPORTING ROUTES
+const adminRoutes = require('./routes/adminRoutes');
+
+//USING ROUTES
+/* app.use('/api/subscribers', require('./routes/subscribersRoutes')); */
+app.use('/api/admin', adminRoutes);
 /* ROUTES -- END */
 
 //Serve frontend in production ready application

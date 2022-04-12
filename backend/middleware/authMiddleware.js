@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
-const User = require('../models/userModel');
+const Admin = require('../models/adminModel');
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -16,14 +15,14 @@ const protect = asyncHandler(async (req, res, next) => {
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // Check if user still exists
-      const currentUser = await User.findById(decoded.id).select('-password');
-      //If user does not exist, return error
-      if (!currentUser) {
-        return next(new ErrorResponse(`User no longer exists`, 404));
+      // Check if admin still exists
+      const currentAdmin = await Admin.findById(decoded.id).select('-password');
+      //If admin does not exist, return error
+      if (!currentAdmin) {
+        return next(new ErrorResponse(`Admin no longer exists`, 404));
       } else {
-        //If user exists, set user to req.user and call next middleware
-        req.user = currentUser;
+        //If admin exists, set admin to req.admin and call next middleware
+        req.admin = currentAdmin;
         next();
       }
     } catch (error) {
