@@ -7,13 +7,21 @@ import {
 } from '../context/authContext/AuthActions';
 
 /* 
- desc: login admin
+ desc: LOGIN ADMIN
 */
 export const login = async (admin, dispatch) => {
   dispatch(loginStart());
   try {
     const response = await axios.post('/api/admin/login', admin);
-    dispatch(loginSuccess(response.data));
+    console.log(response.data);
+    //Check if admin is a Recorder and has been suspended
+    if (response.data.status === 'Suspended') {
+      const errorMsg =
+        'Your account has been suspended. Please contact the administrator.';
+      dispatch(loginFailure(errorMsg));
+    } else {
+      dispatch(loginSuccess(response.data));
+    }
   } catch (error) {
     const errorMsg = error.response.data.message;
     dispatch(loginFailure(errorMsg));
@@ -21,11 +29,11 @@ export const login = async (admin, dispatch) => {
 };
 
 /* 
- desc: Get admin data
+ desc: GET ADMIN DATA
 */
-export const getAdminData = async (token) => {
+export const getLoggedInAdminData = async (token) => {
   try {
-    const response = await axios.get('/api/admin/get-admin-data', {
+    const response = await axios.get('/api/admin/get-logged-in-admin-data', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,7 +45,7 @@ export const getAdminData = async (token) => {
 };
 
 /* 
- desc: Update logged in admin profile
+ desc: UPDATE LOGGED IN ADMIN DATA
 */
 export const updateLoggedInAdminData = async (token, newData, dispatch) => {
   try {
@@ -51,6 +59,33 @@ export const updateLoggedInAdminData = async (token, newData, dispatch) => {
       }
     );
     dispatch(loginSuccess(response.data));
+    return {
+      ...response.data,
+      isError: false,
+    };
+  } catch (error) {
+    return {
+      ...error.response.data,
+      isError: true,
+    };
+  }
+};
+
+/* 
+ desc: UPDATE LOGGED IN ADMIN PASSWORD
+*/
+export const updateLoggedInAdminPassword = async (token, data, dispatch) => {
+  try {
+    const response = await axios.put(
+      '/api/admin/update-logged-in-admin-password',
+      { ...data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch(logout());
     return {
       ...response.data,
       isError: false,

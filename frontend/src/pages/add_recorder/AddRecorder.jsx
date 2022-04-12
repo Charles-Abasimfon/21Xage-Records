@@ -1,9 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import { addNewRecorder } from '../../apicalls/recorderCalls';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import CircularProgress from '@mui/material/CircularProgress';
+import Error from '../../components/error/Error';
+import Success from '../../components/success/Success';
 import './addrecorder.scss';
 
 function AddRecorder() {
+  const { admin } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorDetails, setErrorDetails] = useState({
+    isError: false,
+    errorMessage: '',
+  });
+  const [success, setSuccess] = useState(false);
+
   const [formInputs, setFormInputs] = useState({
     name: '',
     telegram: '',
@@ -11,6 +24,8 @@ function AddRecorder() {
     phone: '',
     address: '',
     country: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const handleFormInputChange = (event) => {
@@ -18,6 +33,7 @@ function AddRecorder() {
       ...formInputs,
       [event.target.name]: event.target.value,
     });
+    setSuccess(false);
   };
 
   const navigate = useNavigate();
@@ -28,6 +44,55 @@ function AddRecorder() {
     } else {
       navigate('/', { replace: true }); // the current entry in the history stack will be replaced with the new one with { replace: true }
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setErrorDetails({
+      isError: false,
+      errorMessage: '',
+    });
+    setSuccess(false);
+    addNewRecorder(admin.token, formInputs)
+      .then((res) => {
+        /* Check if res is an error (isError === false) */
+        if (res.isError === false) {
+          setIsLoading(false);
+          setErrorDetails({
+            isError: false,
+            errorMessage: '',
+          });
+          setSuccess(true);
+          //Refresh form
+          setFormInputs({
+            name: '',
+            telegram: '',
+            email: '',
+            phone: '',
+            address: '',
+            country: '',
+            password: '',
+            confirmPassword: '',
+          });
+        } else {
+          console.log(res.message);
+          setIsLoading(false);
+          setErrorDetails({
+            isError: true,
+            errorMessage: res.message,
+          });
+          setSuccess(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        setErrorDetails({
+          isError: true,
+          errorMessage: 'Something went wrong. Please try again later.',
+        });
+      });
   };
 
   return (
@@ -44,10 +109,16 @@ function AddRecorder() {
         </div>
       </div>
       <div className='bottom'>
-        <form>
+        <form onSubmit={(event) => handleSubmit(event)}>
           <div className='form-group'>
-            <label htmlFor='name'>Full Name</label>
+            <label htmlFor='name'>
+              Full Name
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='text'
               name='name'
               id='name'
@@ -57,8 +128,14 @@ function AddRecorder() {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='email'>Email Address</label>
+            <label htmlFor='email'>
+              Email Address
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='email'
               name='email'
               id='email'
@@ -68,8 +145,14 @@ function AddRecorder() {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='telegram'>Telegram</label>
+            <label htmlFor='telegram'>
+              Telegram
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='text'
               name='telegram'
               id='telegram'
@@ -79,7 +162,12 @@ function AddRecorder() {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='phone'>Phone Number</label>
+            <label htmlFor='phone'>
+              Phone Number
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
               type='tel'
               name='phone'
@@ -90,9 +178,7 @@ function AddRecorder() {
             />
           </div>
           <div className='form-group address'>
-            <label htmlFor='address'>
-              Address <sup>(optional)</sup>
-            </label>
+            <label htmlFor='address'>Address</label>
             <input
               type='text'
               name='address'
@@ -113,8 +199,57 @@ function AddRecorder() {
               onChange={(event) => handleFormInputChange(event)}
             />
           </div>
+          <div className='form-group'>
+            <label htmlFor='password'>
+              Password
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
+            <input
+              required={true}
+              type='text'
+              name='password'
+              id='password'
+              placeholder=''
+              minLength={8}
+              value={formInputs.password}
+              onChange={(event) => handleFormInputChange(event)}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='confirmPassword'>
+              Confirm Password
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
+            <input
+              required={true}
+              type='text'
+              name='confirmPassword'
+              id='confirmPassword'
+              placeholder=''
+              minLength={8}
+              value={formInputs.confirmPassword}
+              onChange={(event) => handleFormInputChange(event)}
+            />
+          </div>
+          {errorDetails.isError && (
+            <Error errorMsg={errorDetails.errorMessage} />
+          )}
+          {success && <Success successMsg='Recorder added successfully' />}
           <div className='form-btn-container'>
-            <button className='btn'>Add Recorder</button>
+            <button className='btn' disabled={isLoading}>
+              {!isLoading ? (
+                <>Add Recorder</>
+              ) : (
+                <>
+                  Loading{' '}
+                  <CircularProgress size={20} style={{ marginLeft: '5px' }} />
+                </>
+              )}
+            </button>
           </div>
         </form>
       </div>

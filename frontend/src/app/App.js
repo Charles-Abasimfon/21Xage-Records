@@ -22,6 +22,7 @@ import EditSubscriber from '../pages/edit_subscriber/EditSubscriber';
 import EditRecorder from '../pages/edit_recorder/EditRecorder';
 import Profile from '../pages/profile/Profile';
 import EditProfile from '../pages/edit_profile/EditProfile';
+import ChangePassword from '../pages/change_password/ChangePassword';
 import ProtectedRoute from '../protect/ProtectedRoutes';
 import PreventRecorders from '../protect/PreventRecorders';
 import '../global_styles/main.scss';
@@ -60,6 +61,7 @@ function App() {
             <Route path='profile'>
               <Route index element={<Profile />} />
               <Route path='edit' element={<EditProfile />} />
+              <Route path='change-password' element={<ChangePassword />} />
             </Route>
             <Route path='subscribers'>
               <Route index element={<AllSubscribers />} />
@@ -74,19 +76,47 @@ function App() {
               <Route path='add-new' element={<AddSubscriber />} />
               <Route path='edit/:subscriberId' element={<EditSubscriber />} />
             </Route>
-            <Route
-              path='recorders'
-              element={
-                <PreventRecorders admin={admin}>
-                  <AllRecorders />
-                </PreventRecorders>
-              }
-            >
-              <Route index element={<AllRecorders />} />
-              <Route path='all' element={<AllRecorders />} />
-              <Route path=':recorderId' element={<SingleRecorder />} />
-              <Route path='add-new' element={<AddRecorder />} />
-              <Route path='edit/:recorderId' element={<EditRecorder />} />
+            <Route path='recorders'>
+              <Route
+                index
+                element={
+                  <PreventRecorders admin={admin}>
+                    <AllRecorders />
+                  </PreventRecorders>
+                }
+              />
+              <Route
+                path='all'
+                element={
+                  <PreventRecorders admin={admin}>
+                    <AllRecorders />
+                  </PreventRecorders>
+                }
+              />
+              <Route
+                path=':recorderId'
+                element={
+                  <PreventRecorders admin={admin}>
+                    <SingleRecorder />
+                  </PreventRecorders>
+                }
+              />
+              <Route
+                path='add-new'
+                element={
+                  <PreventRecorders admin={admin}>
+                    <AddRecorder />
+                  </PreventRecorders>
+                }
+              />
+              <Route
+                path='edit/:recorderId'
+                element={
+                  <PreventRecorders admin={admin}>
+                    <EditRecorder />
+                  </PreventRecorders>
+                }
+              />
             </Route>
           </Route>
           <Route path='*' element={<Navigate replace to='/' />} />

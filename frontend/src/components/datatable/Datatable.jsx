@@ -46,12 +46,14 @@ const columns = [
           <Link to={`/subscribers/edit/${params.row.id}`}>
             <EditIcon className='edit-icon' />
           </Link>
-          <a
-            href={`https://telegram.me/${params.row.telegram}`}
-            target='_blank'
-          >
-            <TelegramIcon className='telegram-icon' />
-          </a>
+          {params.row.telegram !== undefined && (
+            <a
+              href={`https://telegram.me/${params.row.telegram}`}
+              target='_blank'
+            >
+              <TelegramIcon className='telegram-icon' />
+            </a>
+          )}
         </>
       );
     },

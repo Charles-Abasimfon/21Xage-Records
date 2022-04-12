@@ -29,6 +29,7 @@ const adminSchema = mongoose.Schema(
     },
     telegram: {
       type: String,
+      required: [true, 'Please add a telegram username'],
     },
     status: {
       type: String,

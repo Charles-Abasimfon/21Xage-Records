@@ -83,6 +83,7 @@ function Login() {
               onChange={(event) => handleFormInputChange(event)}
             />
           </div>
+          {error && <Error errorMsg={errorMsg} />}
           <div className='form-btn-container'>
             <button
               className='btn'
@@ -101,7 +102,6 @@ function Login() {
               )}
             </button>
           </div>
-          {error && <Error errorMsg={errorMsg} />}
         </form>
       </div>
       <a

@@ -1,30 +1,28 @@
-import { useNavigate, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import Modal from '../../components/modal/Modal';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { getRecorderDataById } from '../../apicalls/recorderCalls';
+import Loader from '../../components/loader/Loader';
 import './singlerecorder.scss';
 
 function SingleRecorder() {
-  const [recorderInfo, setRecorderInfo] = useState({});
+  let { recorderId } = useParams();
+  const { admin } = useContext(AuthContext);
+  const [recorderInfo, setRecorderInfo] = useState(undefined);
   const [modalType, setModalType] = useState('');
   const [displayModal, setDisplayModal] = useState(false);
 
   useEffect(() => {
-    setRecorderInfo({
-      name: 'John Doe',
-      id: '123456789',
-      email: 'johndoe@email.com',
-      phone: '+1 123 456 7890',
-      telegram: 'charleeyy',
-      status: 'Suspended',
-      address: '123 Main St, New York, NY 10001',
-      country: 'USA',
-      activity_count: '10',
-      added: '2018-01-01',
-      additional_info:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam numquam laudantium, laboriosam rerum ipsa asperiores minima dolorem pariatur quisquam! Fugiat labore temporibus quo officiis sunt vel debitis modi vero rerum officia, consectetur harum eius, necessitatibus quidem! Quibusdam, architecto! Reiciendis, ducimus deserunt. Quo enim exercitationem, nostrum cumque odit id vel blanditiis.',
-    });
-  }, []);
+    getRecorderDataById(admin.token, recorderId)
+      .then((res) => {
+        setRecorderInfo(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [recorderId]);
 
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
@@ -42,105 +40,115 @@ function SingleRecorder() {
   };
 
   return (
-    <div className='single-recorder'>
-      <div className='top'>
-        <div className='title-container'>
-          <InfoIcon className='title-icon' />
-          <h2>Recorder Information</h2>
-        </div>
-        <div className='btn-container'>
-          <Link className='btn' to='/'>
-            Edit Recorder Data
-          </Link>
-          {recorderInfo.status === 'Active' ? (
-            <button
-              className='btn'
-              onClick={() => toggleModal('suspend-recorder')}
-            >
-              Suspend Recorder
-            </button>
-          ) : (
-            <button
-              className='btn'
-              onClick={() => toggleModal('reactivate-recorder')}
-            >
-              Reactivate Recorder
-            </button>
-          )}
+    <>
+      {!recorderInfo ? (
+        <Loader />
+      ) : (
+        <div className='single-recorder'>
+          <div className='top'>
+            <div className='title-container'>
+              <InfoIcon className='title-icon' />
+              <h2>Recorder Information</h2>
+            </div>
+            <div className='btn-container'>
+              <Link className='btn' to={`/recorders/edit/${recorderId}`}>
+                Edit Recorder Data
+              </Link>
+              {recorderInfo.status === 'Active' ? (
+                <button
+                  className='btn'
+                  onClick={() => toggleModal('suspend-recorder')}
+                >
+                  Suspend Recorder
+                </button>
+              ) : (
+                <button
+                  className='btn'
+                  onClick={() => toggleModal('reactivate-recorder')}
+                >
+                  Reactivate Recorder
+                </button>
+              )}
 
-          <button
-            className='btn'
-            onClick={() => toggleModal('delete-recorder')}
-          >
-            Delete Recorder
-          </button>
-          <button className='btn' onClick={handleBackButtonClick}>
-            Back
-          </button>
-        </div>
-      </div>
+              <button
+                className='btn'
+                onClick={() => toggleModal('delete-recorder')}
+              >
+                Delete Recorder
+              </button>
+              <button className='btn' onClick={handleBackButtonClick}>
+                Back
+              </button>
+            </div>
+          </div>
 
-      <Modal
-        displayModal={displayModal}
-        setDisplayModal={setDisplayModal}
-        type={modalType}
-        userId={recorderInfo.id}
-      />
+          <Modal
+            displayModal={displayModal}
+            setDisplayModal={setDisplayModal}
+            type={modalType}
+            recorderId={recorderInfo._id}
+            adminToken={admin.token}
+            setRecorderInfo={setRecorderInfo}
+          />
 
-      <div className='below-top'>
-        <div className='card'>
-          <div className='item'>
-            <div className='details'>
-              <h1 className='item-title'>{recorderInfo.name}</h1>
-              <div className='detail-item'>
-                <span className='item-key'>Id:</span>
-                <span className='item-value'>{recorderInfo.id}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Status:</span>
-                <span
-                  className={`item-value recorder-status 
+          <div className='below-top'>
+            <div className='card'>
+              <div className='item'>
+                <div className='details'>
+                  <h1 className='item-title'>{recorderInfo.name}</h1>
+                  <div className='detail-item'>
+                    <span className='item-key'>Level:</span>
+                    <span className='item-value'>
+                      {recorderInfo.admin_level}
+                    </span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Id:</span>
+                    <span className='item-value'>
+                      {recorderInfo.shorter_id}
+                    </span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Status:</span>
+                    <span
+                      className={`item-value recorder-status 
                 ${recorderInfo.status === 'Active' && 'active'} 
                 ${recorderInfo.status === 'Suspended' && 'suspended'}`}
-                >
-                  <span>{recorderInfo.status}</span>
-                </span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Email:</span>
-                <span className='item-value'>{recorderInfo.email}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Phone Number:</span>
-                <span className='item-value'>{recorderInfo.phone}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Telegram Username:</span>
-                <span className='item-value'>{recorderInfo.telegram}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Address:</span>
-                <span className='item-value'>{recorderInfo.address}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Country:</span>
-                <span className='item-value'>{recorderInfo.country}</span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Activity Count:</span>
-                <span className='item-value'>
-                  {recorderInfo.activity_count}
-                </span>
-              </div>
-              <div className='detail-item'>
-                <span className='item-key'>Added:</span>
-                <span className='item-value'>{recorderInfo.added}</span>
+                    >
+                      <span>{recorderInfo.status}</span>
+                    </span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Email:</span>
+                    <span className='item-value'>{recorderInfo.email}</span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Phone Number:</span>
+                    <span className='item-value'>{recorderInfo.phone}</span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Telegram Username:</span>
+                    <span className='item-value'>{recorderInfo.telegram}</span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Address:</span>
+                    <span className='item-value'>{recorderInfo.address}</span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Country:</span>
+                    <span className='item-value'>{recorderInfo.country}</span>
+                  </div>
+                  <div className='detail-item'>
+                    <span className='item-key'>Added:</span>
+                    <span className='item-value'>{recorderInfo.added}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

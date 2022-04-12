@@ -1,13 +1,22 @@
-.error-container {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 2px solid #dc2626;
-  color: #dc2626;
-  margin-top: 20px;
+.error {
+  min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  .error.msg {
-    font-weight: 500;
+
+  .error-container {
+    width: max-content;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #dc2626;
+    color: #dc2626;
+    margin: 10px 0px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .error.msg {
+      font-weight: 500;
+    }
   }
 }

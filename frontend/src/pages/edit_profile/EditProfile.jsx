@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {
-  getAdminData,
+  getLoggedInAdminData,
   updateLoggedInAdminData,
 } from '../../apicalls/authCalls';
 import Loader from '../../components/loader/Loader';
@@ -21,7 +21,7 @@ function EditProfile() {
   });
 
   useEffect(() => {
-    getAdminData(admin.token)
+    getLoggedInAdminData(admin.token)
       .then((res) => {
         setFormInputs({
           name: res.name,
@@ -193,6 +193,9 @@ function EditProfile() {
                   onChange={(event) => handleFormInputChange(event)}
                 />
               </div>
+              {errorDetails.isError && (
+                <Error errorMsg={errorDetails.errorMessage} />
+              )}
               <div className='form-btn-container'>
                 <button className='btn' disabled={isUpdating}>
                   {!isUpdating ? (
@@ -208,9 +211,20 @@ function EditProfile() {
                   )}
                 </button>
               </div>
-              {errorDetails.isError && (
-                <Error errorMsg={errorDetails.errorMessage} />
-              )}
+              <Link
+                to='/profile/change-password'
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  color: '#6b7280',
+                  fontWeight: '600',
+                  marginTop: '20px',
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
+                }}
+              >
+                Change Password?
+              </Link>
             </form>
           </div>
         </div>

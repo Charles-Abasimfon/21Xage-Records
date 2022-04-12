@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import InfoIcon from '@mui/icons-material/Info';
+import {
+  updateRecorderStatusToActiveOrInactiveById,
+  deleteRecorderById,
+} from '../../apicalls/recorderCalls';
 import './modal.scss';
 
 const modalStyle = {
@@ -21,6 +26,7 @@ const modalStyle = {
 /* MODAL COMPONENT REQUIRES THE FOLLOWING PROPS: displayModal, setDisplayModal, type, userId -- Check other instances link the SingleRecorder Page for a good illustration of how to call Modal child component */
 
 function ModalComponent(props) {
+  const navigate = useNavigate();
   const modalContainerRef = useRef();
   const [modalContents, setModalContents] = useState({
     title: '',
@@ -28,8 +34,44 @@ function ModalComponent(props) {
     buttonText: '',
     buttonAction: () => {},
   });
-  const { displayModal, setDisplayModal, type, userId } = props;
+  const {
+    displayModal,
+    setDisplayModal,
+    type,
+    recorderId,
+    adminToken,
+    setRecorderInfo,
+  } = props;
   const handleClose = () => setDisplayModal(false);
+
+  //Handle Suspend/Re-Activate recorder
+  const handleSuspendOrReactivateRecorder = (type) => {
+    updateRecorderStatusToActiveOrInactiveById(adminToken, recorderId, type)
+      .then((res) => {
+        /* Check if res is an error (isError === true) */
+        if (res.isError === false) {
+          setRecorderInfo({ ...res });
+          handleClose();
+        } else {
+          console.log(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //Handle Delete recorder
+  const handleDeleteRecorder = () => {
+    deleteRecorderById(adminToken, recorderId)
+      .then((res) => {
+        handleClose();
+        navigate('/recorders/all', { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     switch (type) {
@@ -38,7 +80,7 @@ function ModalComponent(props) {
           title: 'Suspend Recorder',
           text: 'Are you sure you want to suspend this recorder?',
           buttonText: 'Suspend',
-          buttonAction: () => {},
+          buttonAction: () => handleSuspendOrReactivateRecorder('Suspended'),
         });
         break;
 
@@ -47,7 +89,7 @@ function ModalComponent(props) {
           title: 'Reactivate Recorder',
           text: 'Are you sure you want to reactivate this recorder?',
           buttonText: 'Reactivate',
-          buttonAction: () => {},
+          buttonAction: () => handleSuspendOrReactivateRecorder('Active'),
         });
         break;
 
@@ -56,7 +98,7 @@ function ModalComponent(props) {
           title: 'Delete Recorder',
           text: 'Are you sure you want to delete this recorder?',
           buttonText: 'Delete',
-          buttonAction: () => {},
+          buttonAction: () => handleDeleteRecorder(),
         });
         break;
 

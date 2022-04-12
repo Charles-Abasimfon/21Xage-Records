@@ -35,7 +35,7 @@ const protect = asyncHandler(async (req, res, next) => {
   //If token is not found, return error
   if (!token) {
     res.status(401);
-    throw new Error('Not authorized to access this route, No Token');
+    throw new Error('Not authorized to access this route');
   }
 });
 

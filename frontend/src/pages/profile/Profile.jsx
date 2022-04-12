@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { getAdminData } from '../../apicalls/authCalls';
+import { getLoggedInAdminData } from '../../apicalls/authCalls';
 import Loader from '../../components/loader/Loader';
 import './profile.scss';
 
@@ -11,7 +11,7 @@ function Profile() {
   const [adminInfo, setAdminInfo] = useState(undefined);
 
   useEffect(() => {
-    getAdminData(admin.token)
+    getLoggedInAdminData(admin.token)
       .then((res) => {
         setAdminInfo(res);
       })
