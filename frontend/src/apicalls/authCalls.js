@@ -13,7 +13,6 @@ export const login = async (admin, dispatch) => {
   dispatch(loginStart());
   try {
     const response = await axios.post('/api/admin/login', admin);
-    console.log(response.data);
     //Check if admin is a Recorder and has been suspended
     if (response.data.status === 'Suspended') {
       const errorMsg =

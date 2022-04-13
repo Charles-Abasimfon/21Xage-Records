@@ -10,15 +10,13 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import './widget.scss';
 
 function Widget(props) {
-  const { type } = props;
+  const { type, counter } = props;
   /* the type prop carries information on the type of the widget */
 
   const [percentageDetails, setPercentageDetails] = useState({
     percentage: 0,
     isPositive: true,
   });
-
-  const [counter, setCounter] = useState(0);
 
   const [widgetDetails, setWidgetDetails] = useState({
     title: '',
@@ -55,7 +53,7 @@ function Widget(props) {
 
       case 'abouttoexpire-subscribers':
         setWidgetDetails({
-          title: 'About to expire',
+          title: 'Almost expired',
           linkText: 'View list',
           linkUrl: '/subscribers/almost-expire',
           icon: AccessTimeIcon,
@@ -91,14 +89,6 @@ function Widget(props) {
         </Link>
       </div>
       <div className='right'>
-        <div
-          className={`percentage ${
-            percentageDetails.isPositive ? 'positive' : 'negative'
-          }`}
-        >
-          <KeyboardArrowUpIcon />
-          {percentageDetails.percentage}%
-        </div>
         {type && widgetDetails.icon && (
           <widgetDetails.icon
             className='icon'

@@ -205,7 +205,6 @@ function EditRecorder() {
               )}
               <div className='form-btn-container'>
                 <button className='btn' disabled={isUpdating}>
-                  {' '}
                   {!isUpdating ? (
                     <>Update Recorder</>
                   ) : (

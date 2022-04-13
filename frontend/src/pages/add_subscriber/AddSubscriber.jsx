@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
+import { addNewSubscriber } from '../../apicalls/subscriberCalls';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import CircularProgress from '@mui/material/CircularProgress';
+import Error from '../../components/error/Error';
+import Success from '../../components/success/Success';
 import './addsubscriber.scss';
 
 function AddSubscriber() {
+  const { admin } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorDetails, setErrorDetails] = useState({
+    isError: false,
+    errorMessage: '',
+  });
+  const [success, setSuccess] = useState(false);
   const [formInputs, setFormInputs] = useState({
     name: '',
     telegram: '',
@@ -20,6 +32,7 @@ function AddSubscriber() {
       ...formInputs,
       [event.target.name]: event.target.value,
     });
+    setSuccess(false);
   };
 
   const navigate = useNavigate();
@@ -30,6 +43,55 @@ function AddSubscriber() {
     } else {
       navigate('/', { replace: true }); // the current entry in the history stack will be replaced with the new one with { replace: true }
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setErrorDetails({
+      isError: false,
+      errorMessage: '',
+    });
+    setSuccess(false);
+    addNewSubscriber(admin.token, formInputs)
+      .then((res) => {
+        /* Check if res is an error (isError === false) */
+        if (res.isError === false) {
+          setIsLoading(false);
+          setErrorDetails({
+            isError: false,
+            errorMessage: '',
+          });
+          setSuccess(true);
+          //Refresh form
+          setFormInputs({
+            name: '',
+            telegram: '',
+            email: '',
+            phone: '',
+            address: '',
+            country: '',
+            subscriptionDate: '',
+            additionalInfo: '',
+          });
+        } else {
+          console.log(res.message);
+          setIsLoading(false);
+          setErrorDetails({
+            isError: true,
+            errorMessage: res.message,
+          });
+          setSuccess(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        setErrorDetails({
+          isError: true,
+          errorMessage: 'Something went wrong. Please try again later.',
+        });
+      });
   };
 
   return (
@@ -46,10 +108,16 @@ function AddSubscriber() {
         </div>
       </div>
       <div className='bottom'>
-        <form>
+        <form onSubmit={(event) => handleSubmit(event)}>
           <div className='form-group'>
-            <label htmlFor='name'>Full Name</label>
+            <label htmlFor='name'>
+              Full Name{' '}
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='text'
               name='name'
               id='name'
@@ -59,8 +127,14 @@ function AddSubscriber() {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='email'>Email Address</label>
+            <label htmlFor='email'>
+              Email Address{' '}
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='email'
               name='email'
               id='email'
@@ -70,8 +144,14 @@ function AddSubscriber() {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='telegram'>Telegram</label>
+            <label htmlFor='telegram'>
+              Telegram{' '}
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='text'
               name='telegram'
               id='telegram'
@@ -92,9 +172,7 @@ function AddSubscriber() {
             />
           </div>
           <div className='form-group address'>
-            <label htmlFor='address'>
-              Address <sup>(optional)</sup>
-            </label>
+            <label htmlFor='address'>Address</label>
             <input
               type='text'
               name='address'
@@ -116,8 +194,14 @@ function AddSubscriber() {
             />
           </div>
           <div className='form-group date'>
-            <label htmlFor='subscriptionDate'>Subscription Date:</label>
+            <label htmlFor='subscriptionDate'>
+              Subscription Date:{' '}
+              <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
+                (required)
+              </sup>
+            </label>
             <input
+              required={true}
               type='date'
               id='subscriptionDate'
               name='subscriptionDate'
@@ -127,9 +211,7 @@ function AddSubscriber() {
             />
           </div>
           <div className='form-group textarea'>
-            <label htmlFor='additionalInfo'>
-              Any Additional Info/Tag<sup>(optional)</sup>
-            </label>
+            <label htmlFor='additionalInfo'>Any Additional Info/Tag</label>
             <textarea
               name='additionalInfo'
               id='additionalInfo'
@@ -139,8 +221,22 @@ function AddSubscriber() {
               onChange={(event) => handleFormInputChange(event)}
             />
           </div>
+          {errorDetails.isError && (
+            <Error errorMsg={errorDetails.errorMessage} />
+          )}
+          {success && <Success successMsg='Subscriber added successfully' />}
           <div className='form-btn-container'>
-            <button className='btn'>Add Subscriber</button>
+            <button className='btn'>
+              {' '}
+              {!isLoading ? (
+                <>Add Subscriber</>
+              ) : (
+                <>
+                  Loading{' '}
+                  <CircularProgress size={20} style={{ marginLeft: '5px' }} />
+                </>
+              )}
+            </button>
           </div>
         </form>
       </div>

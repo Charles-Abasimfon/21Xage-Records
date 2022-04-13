@@ -2,6 +2,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import Modal from '../../components/modal/Modal';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { getRecorderDataById } from '../../apicalls/recorderCalls';
 import Loader from '../../components/loader/Loader';
@@ -51,6 +52,14 @@ function SingleRecorder() {
               <h2>Recorder Information</h2>
             </div>
             <div className='btn-container'>
+              {recorderInfo.telegram && (
+                <a
+                  href={`https://telegram.me/${recorderInfo.telegram}`}
+                  target='_blank'
+                >
+                  <TelegramIcon className='telegram-icon' />
+                </a>
+              )}
               <Link className='btn' to={`/recorders/edit/${recorderId}`}>
                 Edit Recorder Data
               </Link>

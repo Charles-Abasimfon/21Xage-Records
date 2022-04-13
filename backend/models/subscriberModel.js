@@ -5,7 +5,8 @@ const date = new Date();
 const todaysDate =
   date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
 
-const adminSchema = mongoose.Schema(
+// SUBSCRIBERS MODEL
+const subscribersSchema = mongoose.Schema(
   {
     shorter_id: {
       type: String,
@@ -24,16 +25,10 @@ const adminSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      required: [true, 'Please add a phone number'],
     },
     telegram: {
       type: String,
       required: [true, 'Please add a telegram username'],
-    },
-    status: {
-      type: String,
-      required: [true, 'Please pass admin status: Active/Suspended'],
-      default: 'Active',
     },
     address: {
       type: String,
@@ -41,21 +36,23 @@ const adminSchema = mongoose.Schema(
     country: {
       type: String,
     },
-    added: {
+    subscriptionDates: {
+      type: Array,
+      default: [],
+      required: [true, 'Missing subscription dates - Set to array'],
+    },
+    lastSubscriptionDate: {
+      type: String,
+      required: [true, 'Missing last subscription date - Set to date'],
+    },
+    joined: {
       type: String,
       required: [true, 'Please add a date'],
       default: todaysDate,
       immutable: true,
     },
-    password: {
+    additionalInfo: {
       type: String,
-      required: [true, 'Please add a password'],
-      minlength: 8,
-    },
-    admin_level: {
-      type: String,
-      default: 'Recorder',
-      immutable: true,
     },
   },
   {
@@ -63,4 +60,4 @@ const adminSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Admin', adminSchema);
+module.exports = mongoose.model('Subscriber', subscribersSchema);

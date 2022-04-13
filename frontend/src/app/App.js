@@ -27,6 +27,7 @@ import ProtectedRoute from '../protect/ProtectedRoutes';
 import PreventRecorders from '../protect/PreventRecorders';
 import '../global_styles/main.scss';
 import '../global_styles/darkmode.scss';
+import { createTheme } from '@mui/material/styles';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);

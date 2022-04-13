@@ -9,6 +9,7 @@ import {
   updateRecorderStatusToActiveOrInactiveById,
   deleteRecorderById,
 } from '../../apicalls/recorderCalls';
+import { updatedSubscriberStatusToActiveById } from '../../apicalls/subscriberCalls';
 import './modal.scss';
 
 const modalStyle = {
@@ -41,10 +42,13 @@ function ModalComponent(props) {
     recorderId,
     adminToken,
     setRecorderInfo,
+    subscriberId,
+    subscriberInfo,
+    getSubscriberInfo,
   } = props;
   const handleClose = () => setDisplayModal(false);
 
-  //Handle Suspend/Re-Activate recorder
+  //@Desc Handle Suspend/Re-Activate recorder
   const handleSuspendOrReactivateRecorder = (type) => {
     updateRecorderStatusToActiveOrInactiveById(adminToken, recorderId, type)
       .then((res) => {
@@ -61,12 +65,45 @@ function ModalComponent(props) {
       });
   };
 
-  //Handle Delete recorder
+  //@Desc Handle Delete recorder
   const handleDeleteRecorder = () => {
     deleteRecorderById(adminToken, recorderId)
       .then((res) => {
         handleClose();
         navigate('/recorders/all', { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //@Desc Handle Activate/Renew Subscriber
+  const handleActivateSubscriber = (type) => {
+    var d = new Date(),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    const todaysDate = [year, month, day].join('-');
+    const updatedSubscriptionDates = [
+      ...subscriberInfo.subscriptionDates,
+      todaysDate,
+    ];
+    updatedSubscriberStatusToActiveById(
+      adminToken,
+      subscriberId,
+      todaysDate,
+      updatedSubscriptionDates
+    )
+      .then((res) => {
+        /* Check if res is an error (isError === true) */
+        if (res.isError === false) {
+          handleClose();
+          getSubscriberInfo();
+        } else {
+          console.log(res.message);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -107,7 +144,7 @@ function ModalComponent(props) {
           title: 'Change Status To Active',
           text: 'Are you sure you want to change this subscribers status to active?',
           buttonText: 'Change Status',
-          buttonAction: () => {},
+          buttonAction: () => handleActivateSubscriber(),
         });
         break;
 

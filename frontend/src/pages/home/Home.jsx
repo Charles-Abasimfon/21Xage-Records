@@ -1,15 +1,57 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widgets/Widget';
 import Featured from '../../components/featured/Featured';
 import Chart from '../../components/chart/Chart';
-import Table from '../../components/table/Table';
+import Datatable from '../../components/datatable/Datatable';
+import { AuthContext } from '../../context/authContext/AuthContext';
 import './home.scss';
+import { getAllSubscribers } from '../../apicalls/subscriberCalls';
 
 function Home(props) {
   const location = useLocation();
+  const { pathname } = useLocation();
+
   const { appRef } = props;
+
+  const [subscribers, setSubscribers] = useState(undefined);
+  const { admin } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (pathname === '/') {
+      getAllSubscribers(admin.token)
+        .then((res) => {
+          setSubscribers(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [pathname]);
+
+  const getNumberOfSubscribersInCategory = (category) => {
+    if (!subscribers) return '...';
+    switch (category) {
+      case 'All':
+        return subscribers.length;
+      case 'Active':
+        return subscribers.filter(
+          (subscriber) => subscriber.status === 'Active'
+        ).length;
+      case 'Almost Expired':
+        return subscribers.filter(
+          (subscriber) => subscriber.status === 'Almost Expired'
+        ).length;
+      case 'Expired':
+        return subscribers.filter(
+          (subscriber) => subscriber.status === 'Expired'
+        ).length;
+      default:
+        return 0;
+    }
+  };
 
   return (
     <div className='dashboard'>
@@ -24,10 +66,22 @@ function Home(props) {
           {location.pathname === '/' && (
             <div className='home-content'>
               <div className='widgets'>
-                <Widget type='all-subscribers' />
-                <Widget type='active-subscribers' />
-                <Widget type='abouttoexpire-subscribers' />
-                <Widget type='expired-subscribers' />
+                <Widget
+                  type='all-subscribers'
+                  counter={getNumberOfSubscribersInCategory('All')}
+                />
+                <Widget
+                  type='active-subscribers'
+                  counter={getNumberOfSubscribersInCategory('Active')}
+                />
+                <Widget
+                  type='abouttoexpire-subscribers'
+                  counter={getNumberOfSubscribersInCategory('Almost Expired')}
+                />
+                <Widget
+                  type='expired-subscribers'
+                  counter={getNumberOfSubscribersInCategory('Expired')}
+                />
               </div>
               <div className='charts'>
                 <Featured />
@@ -36,7 +90,7 @@ function Home(props) {
               <div className='list-container'>
                 <div className='list'>
                   <div className='list-title'>Latest Subscribers</div>
-                  <Table />
+                  <Datatable toDisplay='latest-subscribers' />
                 </div>
               </div>
             </div>
@@ -56,7 +110,7 @@ function Home(props) {
               <div className='list-container'>
                 <div className='list'>
                   <div className='list-title'>Latest Subscribers</div>
-                  <Table />
+                  <Datatable autoHeight={true} toDisplay='latest-subscribers' />
                 </div>
               </div>
             </div>

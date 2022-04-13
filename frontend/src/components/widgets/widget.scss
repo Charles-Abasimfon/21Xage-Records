@@ -56,18 +56,6 @@
       }
     }
 
-    .percentage {
-      display: flex;
-      align-items: center;
-
-      &.positive {
-        color: #22c55e;
-      }
-      &.negative {
-        color: #e11d48;
-      }
-    }
-
     .icon {
       border-radius: 5px;
       height: 30px;
@@ -75,5 +63,9 @@
       align-self: flex-end;
       padding: 2px;
     }
+  }
+
+  .right {
+    justify-content: flex-end;
   }
 }

@@ -15,46 +15,14 @@
     padding: 20px;
     justify-content: space-between;
 
-    .search {
+    .welcome {
       display: flex;
       align-items: center;
-      border: 0.5px solid lightgray;
-      padding: 3px;
-      border-radius: 25px;
-      width: 100%;
-      max-width: 600px;
-      padding-left: 20px;
-      padding-right: 10px;
-      background-color: #fff;
-      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
-      &:hover {
-        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
-          0 1px 2px -1px rgb(0 0 0 / 0.1);
-
-        .navbar-search-icon {
-          color: #14532d;
-        }
-      }
-      input {
-        font-family: 'Outfit';
-        border: none;
-        outline: none;
-        background: transparent;
-        width: 100%;
-        max-width: 600px;
-        height: 40px;
-        padding-right: 10px;
-        font-size: 16px;
-        &::placeholder {
-          font-family: 'Outfit';
-        }
-      }
-
-      .navbar-search-icon {
-        font-size: 28px;
-        cursor: pointer;
-        color: #374151;
+      .welcome-text {
+        color: #4b5563;
+        font-size: 30px;
+        font-weight: 500;
       }
     }
 

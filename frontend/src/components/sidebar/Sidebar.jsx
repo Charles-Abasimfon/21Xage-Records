@@ -108,7 +108,7 @@ function Sidebar() {
                 </NavLink>
               </>
             )}
-            <p className='title'>SYSTEM</p>
+            {/*             <p className='title'>SYSTEM</p>
             <NavLink
               to='/notifications'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
@@ -136,7 +136,7 @@ function Sidebar() {
             >
               <SettingsOutlinedIcon className='sidebar-list-icon' />
               <span>Settings</span>
-            </NavLink>
+            </NavLink> */}
             <p className='title'>USER</p>
             <NavLink
               to='/profile'

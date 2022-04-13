@@ -15,10 +15,11 @@ connectDB();
 /* ROUTES -- START */
 //IMPORTING ROUTES
 const adminRoutes = require('./routes/adminRoutes');
+const subscriberRoutes = require('./routes/subscriberRoutes');
 
 //USING ROUTES
-/* app.use('/api/subscribers', require('./routes/subscribersRoutes')); */
 app.use('/api/admin', adminRoutes);
+app.use('/api/subscriber', subscriberRoutes);
 /* ROUTES -- END */
 
 //Serve frontend in production ready application

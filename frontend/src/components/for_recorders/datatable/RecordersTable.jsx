@@ -11,11 +11,10 @@ import './recorderstable.scss';
 
 /* TABLE COLUMNS SETTINGS -- START */
 const columns = [
-  { field: 'shorter_id', headerName: 'ID', width: 100 },
-  { field: 'name', headerName: 'Name', width: 200 },
+  { field: 'name', headerName: 'Name', width: 220 },
   { field: 'email', headerName: 'Email', width: 250 },
   { field: 'phone', headerName: 'Phone', width: 160 },
-  { field: 'telegram', headerName: 'Telegram', width: 110 },
+  { field: 'telegram', headerName: 'Telegram', width: 120 },
   {
     field: 'status',
     headerName: 'Status',
@@ -35,7 +34,7 @@ const columns = [
   {
     field: 'added',
     headerName: 'Added',
-    width: 100,
+    width: 110,
   },
   {
     field: 'actions',

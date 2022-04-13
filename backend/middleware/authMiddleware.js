@@ -21,6 +21,13 @@ const protect = asyncHandler(async (req, res, next) => {
       if (!currentAdmin) {
         return next(new ErrorResponse(`Admin no longer exists`, 404));
       } else {
+        //Check is admin is a recorder and has been suspended
+        if (
+          currentAdmin.admin_level === 'Recorder' &&
+          currentAdmin.status === 'Suspended'
+        ) {
+          return next(new ErrorResponse(`Recorder has been suspended`, 401));
+        }
         //If admin exists, set admin to req.admin and call next middleware
         req.admin = currentAdmin;
         next();

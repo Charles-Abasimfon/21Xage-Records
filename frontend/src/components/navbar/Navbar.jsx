@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback, useRef } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DarkModeContext } from '../../context/dark_mode/darkModeContext';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
@@ -10,16 +10,15 @@ import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import fscreen from 'fscreen';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
 import './navbar.scss';
 
 function Navbar(props) {
   const navigate = useNavigate();
-  const { appRef } = props;
   const menuContainerRef = useRef();
   const { darkMode, dispatch } = useContext(DarkModeContext);
   const { dispatch: authDispatch, admin } = useContext(AuthContext);
@@ -40,48 +39,51 @@ function Navbar(props) {
 
   /* FOR FULLSCREEN MODE */
   const [inFullscreenMode, setInFullscreenMode] = useState(false);
-
-  const handleFullscreenChange = useCallback((e) => {
-    let change = '';
-    if (fscreen.fullscreenElement !== null) {
-      change = 'Entered fullscreen mode';
-      setInFullscreenMode(true);
-    } else {
-      change = 'Exited fullscreen mode';
-      setInFullscreenMode(false);
+  const handleEnterFullscreen = () => {
+    if (document.body.requestFullscreen) {
+      document.body.requestFullscreen();
+    } else if (document.body.mozRequestFullScreen) {
+      document.body.mozRequestFullScreen(); // Firefox
+    } else if (document.body.webkitRequestFullscreen) {
+      document.body.webkitRequestFullscreen(); // Chrome and Safari
     }
-    console.log(change, e);
-  }, []);
+    setInFullscreenMode(true);
+  };
 
-  const handleFullscreenError = useCallback((e) => {
-    console.log('Fullscreen Error', e);
-  }, []);
+  const handleExitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+    setInFullscreenMode(false);
+  };
+  /* -------------- */
 
   useEffect(() => {
-    if (fscreen.fullscreenEnabled) {
-      fscreen.addEventListener(
-        'fullscreenchange',
-        handleFullscreenChange,
-        false
-      );
-      fscreen.addEventListener('fullscreenerror', handleFullscreenError, false);
-      return () => {
-        fscreen.removeEventListener('fullscreenchange', handleFullscreenChange);
-        fscreen.removeEventListener('fullscreenerror', handleFullscreenError);
-      };
-    }
+    document.addEventListener('fullscreenchange', () => {
+      setInFullscreenMode(document.fullscreen);
+    });
+    document.addEventListener('mozfullscreenchange', () => {
+      setInFullscreenMode(document.mozFullScreen);
+    });
+    document.addEventListener('webkitfullscreenchange', () => {
+      setInFullscreenMode(document.webkitIsFullScreen);
+    });
+    return () => {
+      document.removeEventListener('fullscreenchange', () => {
+        setInFullscreenMode(document.fullscreen);
+      });
+      document.removeEventListener('mozfullscreenchange', () => {
+        setInFullscreenMode(document.mozFullScreen);
+      });
+      document.removeEventListener('webkitfullscreenchange', () => {
+        setInFullscreenMode(document.webkitIsFullScreen);
+      });
+    };
   });
-
-  const appElement = appRef;
-
-  const toggleFullscreen = useCallback(() => {
-    if (inFullscreenMode) {
-      fscreen.exitFullscreen();
-    } else {
-      fscreen.requestFullscreen(appElement.current);
-    }
-  }, [inFullscreenMode]);
-  /* -------------- */
 
   const handleOpenProfile = () => {
     navigate('/profile', { replace: true });
@@ -91,9 +93,8 @@ function Navbar(props) {
   return (
     <div className='navbar' ref={menuContainerRef}>
       <div className='wrapper'>
-        <div className='search'>
-          <input type='text' placeholder='Search here ...' />
-          <SearchOutlinedIcon className='navbar-search-icon' />
+        <div className='welcome'>
+          <h2 className='welcome-text'>Welcome {admin.name}!</h2>
         </div>
         <div className='items'>
           <div className='item navbar-icon-container'>
@@ -113,16 +114,23 @@ function Navbar(props) {
             {inFullscreenMode ? (
               <FullscreenExitOutlinedIcon
                 className='navbar-icon'
-                onClick={toggleFullscreen}
+                onClick={handleExitFullscreen}
               />
             ) : (
               <FullscreenOutlinedIcon
                 className='navbar-icon'
-                onClick={toggleFullscreen}
+                onClick={handleEnterFullscreen}
               />
             )}
           </div>
           <div className='item navbar-icon-container'>
+            <AccountCircleIcon
+              className='navbar-icon'
+              aria-haspopup='true'
+              onClick={handleClick}
+            />
+          </div>
+          {/*           <div className='item navbar-icon-container'>
             <NotificationsNoneOutlinedIcon className='navbar-icon' />
             {notificationCount > 0 && (
               <div className='navbar-counter'>{notificationCount}</div>
@@ -134,11 +142,7 @@ function Navbar(props) {
           </div>
           <div className='item navbar-icon-container'>
             <ListOutlinedIcon className='navbar-icon' />
-          </div>
-          <div className='item user' aria-haspopup='true' onClick={handleClick}>
-            <span className='user-name'>{admin.name}</span>
-            <KeyboardArrowDownOutlinedIcon className='user-icon' />
-          </div>
+          </div> */}
         </div>
       </div>
 
