@@ -134,7 +134,7 @@ function Navbar(props) {
               />
             )}
           </div>
-          <div className='item navbar-icon-container'>
+          <div className='item navbar-icon-container fullscreen'>
             {inFullscreenMode ? (
               <FullscreenExitOutlinedIcon
                 className='navbar-icon'

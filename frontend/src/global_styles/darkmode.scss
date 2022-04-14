@@ -305,6 +305,16 @@ $dark-seconday-gray: #6b7280;
         border: 1px solid $dark-bg-color;
         font-size: 16px;
 
+        .name {
+          a {
+            color: $dark-text-gray-color;
+            text-decoration: none;
+            &:hover {
+              color: $dark-text-color;
+            }
+          }
+        }
+
         .css-levciy-MuiTablePagination-displayedRows,
         .MuiTablePagination-actions * {
           color: $dark-text-gray-color;

@@ -48,8 +48,16 @@ function SingleRecorder() {
         <div className='single-recorder'>
           <div className='top'>
             <div className='title-container'>
-              <InfoIcon className='title-icon' />
-              <h2>Recorder Information</h2>
+              <div className='title'>
+                <InfoIcon className='title-icon' />
+                <h2>Recorder Information</h2>
+              </div>
+              <button
+                className='mobile-back-btn'
+                onClick={handleBackButtonClick}
+              >
+                Back
+              </button>
             </div>
             <div className='btn-container'>
               {recorderInfo.telegram && (
@@ -85,7 +93,7 @@ function SingleRecorder() {
               >
                 Delete Recorder
               </button>
-              <button className='btn' onClick={handleBackButtonClick}>
+              <button className='back-btn' onClick={handleBackButtonClick}>
                 Back
               </button>
             </div>

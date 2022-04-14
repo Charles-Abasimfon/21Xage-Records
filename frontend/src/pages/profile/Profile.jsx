@@ -38,14 +38,22 @@ function Profile() {
         <div className='profile'>
           <div className='top'>
             <div className='title-container'>
-              <AccountCircleOutlinedIcon className='title-icon' />
-              <h2>Profile</h2>
+              <div className='title'>
+                <AccountCircleOutlinedIcon className='title-icon' />
+                <h2>Profile</h2>
+              </div>
+              <button
+                className='mobile-back-btn'
+                onClick={handleBackButtonClick}
+              >
+                Back
+              </button>
             </div>
             <div className='btn-container'>
               <Link className='btn' to='/profile/edit'>
                 Edit Profile
               </Link>
-              <button className='btn' onClick={handleBackButtonClick}>
+              <button className='back-btn' onClick={handleBackButtonClick}>
                 Back
               </button>
             </div>

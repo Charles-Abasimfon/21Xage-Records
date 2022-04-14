@@ -17,7 +17,18 @@ import {
 
 /* TABLE COLUMNS SETTINGS -- START */
 const columns = [
-  { field: 'name', headerName: 'Name', width: 200 },
+  {
+    field: 'name',
+    headerName: 'Name',
+    width: 220,
+    renderCell: (params) => {
+      return (
+        <div className='name'>
+          <Link to={`/subscribers/${params.row._id}`}>{params.row.name}</Link>
+        </div>
+      );
+    },
+  },
   { field: 'country', headerName: 'Country', width: 120 },
   { field: 'email', headerName: 'Email', width: 250 },
   { field: 'telegram', headerName: 'Telegram', width: 130 },

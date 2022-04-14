@@ -1,7 +1,7 @@
 @import '../../global_styles/main.scss';
 
 .navbar {
-  height: 81.5px;
+  height: 60px;
   display: flex;
   align-items: center;
   color: #1f2937;
@@ -155,6 +155,12 @@
           .navbar-icon {
             color: #14532d;
           }
+        }
+      }
+
+      .fullscreen {
+        @include mobile {
+          display: none;
         }
       }
     }

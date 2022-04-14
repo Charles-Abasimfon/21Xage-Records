@@ -52,8 +52,16 @@ function SingleSubscriber() {
         <div className='single-subscriber'>
           <div className='top'>
             <div className='title-container'>
-              <InfoIcon className='title-icon' />
-              <h2>Subscriber Information</h2>
+              <div className='title'>
+                <InfoIcon className='title-icon' />
+                <h2>Subscriber Information</h2>
+              </div>
+              <button
+                className='mobile-back-btn'
+                onClick={handleBackButtonClick}
+              >
+                Back
+              </button>
             </div>
             <div className='btn-container'>
               {subscriberInfo.telegram && (
@@ -87,7 +95,7 @@ function SingleSubscriber() {
                   Change Status to Active
                 </button>
               )}
-              <button className='btn' onClick={handleBackButtonClick}>
+              <button className='back-btn' onClick={handleBackButtonClick}>
                 Back
               </button>
             </div>

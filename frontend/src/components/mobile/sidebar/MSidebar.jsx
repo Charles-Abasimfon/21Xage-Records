@@ -61,6 +61,7 @@ function MSidebar({ displayMSidebar, setDisplayMSidebar }) {
             <NavLink
               to='/subscribers/latest'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <RecentActorsIcon className='sidebar-list-icon' />
               <span>Latest</span>

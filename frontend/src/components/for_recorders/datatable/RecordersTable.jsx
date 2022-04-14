@@ -11,7 +11,18 @@ import './recorderstable.scss';
 
 /* TABLE COLUMNS SETTINGS -- START */
 const columns = [
-  { field: 'name', headerName: 'Name', width: 220 },
+  {
+    field: 'name',
+    headerName: 'Name',
+    width: 220,
+    renderCell: (params) => {
+      return (
+        <div className='name'>
+          <Link to={`/recorders/${params.row._id}`}>{params.row.name}</Link>
+        </div>
+      );
+    },
+  },
   { field: 'email', headerName: 'Email', width: 250 },
   { field: 'phone', headerName: 'Phone', width: 160 },
   { field: 'telegram', headerName: 'Telegram', width: 120 },
