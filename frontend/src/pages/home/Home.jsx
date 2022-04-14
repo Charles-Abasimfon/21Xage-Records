@@ -73,7 +73,7 @@ function Home(props) {
         <Navbar appRef={appRef} />
         <div
           className='dashboard-content'
-          style={{ height: `calc(${windowHeight}px - 60px)` }}
+          style={{ height: `calc(${windowHeight}px - 70px)` }}
         >
           {/* ///// USE OF OUTLET ///// */}
           <Outlet />
