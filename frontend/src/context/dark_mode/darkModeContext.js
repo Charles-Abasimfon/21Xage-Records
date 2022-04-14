@@ -1,10 +1,18 @@
 import { createContext, useReducer } from 'react';
 import DarkModeReducer from './darkModeReducer';
 
+let darkModeStatus;
+
+if (localStorage.getItem('prefers-dark-mode')) {
+  darkModeStatus = JSON.parse(
+    localStorage.getItem('prefers-dark-mode').toLowerCase()
+  );
+} else {
+  darkModeStatus = false;
+}
+
 const INITIAL_STATE = {
-  darkMode:
-    JSON.parse(localStorage.getItem('prefers-dark-mode').toLowerCase()) ||
-    false,
+  darkMode: darkModeStatus,
 };
 
 export const DarkModeContext = createContext(INITIAL_STATE);
