@@ -103,12 +103,6 @@ function Home(props) {
                 <Featured />
                 <Chart />
               </div>
-              <div className='list-container'>
-                <div className='list'>
-                  <div className='list-title'>Latest Subscribers</div>
-                  <Datatable toDisplay='latest-subscribers' />
-                </div>
-              </div>
             </div>
           )}
           {location.pathname == 'home' && (
@@ -122,12 +116,6 @@ function Home(props) {
               <div className='charts'>
                 <Featured />
                 <Chart />
-              </div>
-              <div className='list-container'>
-                <div className='list'>
-                  <div className='list-title'>Latest Subscribers</div>
-                  <Datatable autoHeight={true} toDisplay='latest-subscribers' />
-                </div>
               </div>
             </div>
           )}

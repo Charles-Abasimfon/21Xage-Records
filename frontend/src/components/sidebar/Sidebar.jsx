@@ -6,10 +6,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
-import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
-import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
@@ -56,6 +53,13 @@ function Sidebar() {
             >
               <PeopleAltOutlinedIcon className='sidebar-list-icon' />
               <span>All Subscribers</span>
+            </NavLink>
+            <NavLink
+              to='/subscribers/latest'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
+              <RecentActorsIcon className='sidebar-list-icon' />
+              <span>Latest</span>
             </NavLink>
             <NavLink
               to='/subscribers/active'

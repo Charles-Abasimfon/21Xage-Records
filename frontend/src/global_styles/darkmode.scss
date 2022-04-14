@@ -580,5 +580,12 @@ $dark-seconday-gray: #6b7280;
         }
       }
     }
+
+    .css-levciy-MuiTablePagination-displayedRows {
+      @include tablet {
+        font-size: 18px !important;
+        color: $dark-text-color !important;
+      }
+    }
   }
 }

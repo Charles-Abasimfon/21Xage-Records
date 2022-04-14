@@ -12,6 +12,7 @@ import AllSubscribers from '../pages/subscribers_list/AllSubscribers';
 import ActiveSubscribers from '../pages/subscribers_list/ActiveSubscribers';
 import AlmostExpiredSubscribers from '../pages/subscribers_list/AlmostExpiredSubscribers';
 import ExpiredSubscribers from '../pages/subscribers_list/ExpiredSubscribers';
+import LatestSubscribers from '../pages/subscribers_list/LatestSubscribers';
 import Login from '../pages/login/Login';
 import AddSubscriber from '../pages/add_subscriber/AddSubscriber';
 import SingleSubscriber from '../pages/single_subscriber/SingleSubscriber';
@@ -71,6 +72,7 @@ function App() {
                 element={<AlmostExpiredSubscribers />}
               />
               <Route path='expired' element={<ExpiredSubscribers />} />
+              <Route path='latest' element={<LatestSubscribers />} />
               <Route path=':subscriberId' element={<SingleSubscriber />} />
               <Route path='add-new' element={<AddSubscriber />} />
               <Route path='edit/:subscriberId' element={<EditSubscriber />} />

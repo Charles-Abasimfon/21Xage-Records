@@ -7,6 +7,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
@@ -56,6 +57,13 @@ function MSidebar({ displayMSidebar, setDisplayMSidebar }) {
             >
               <PeopleAltOutlinedIcon className='sidebar-list-icon' />
               <span>All Subscribers</span>
+            </NavLink>
+            <NavLink
+              to='/subscribers/latest'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
+              <RecentActorsIcon className='sidebar-list-icon' />
+              <span>Latest</span>
             </NavLink>
             <NavLink
               to='/subscribers/active'
