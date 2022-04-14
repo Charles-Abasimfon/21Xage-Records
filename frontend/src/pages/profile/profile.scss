@@ -1,3 +1,5 @@
+@import '../../global_styles/main.scss';
+
 .profile {
   max-height: 100%;
   overflow-y: scroll;
@@ -12,6 +14,12 @@
     padding-bottom: 20px;
     padding-left: 50px;
     padding-right: 50px;
+    @include tablet {
+      height: max-content;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     .title-container {
       display: flex;
@@ -23,6 +31,9 @@
         text-transform: uppercase;
         padding-left: 10px;
         color: #374151;
+        @include mobile {
+          font-size: 18px;
+        }
       }
 
       .title-icon {
@@ -31,8 +42,17 @@
         padding: 8px;
         border-radius: 50%;
         color: #374151;
-
         background-color: #eef1f0;
+        @include mobile {
+          width: 35px;
+          height: 35px;
+          padding: 5px;
+        }
+      }
+
+      @include tablet {
+        margin-bottom: 10px;
+        margin-top: -10px;
       }
     }
 
@@ -72,6 +92,10 @@
         background-color: #166534;
         border: 2px solid #166534;
         text-decoration: none;
+        @include mobile {
+          font-size: 16px;
+          padding: 4px 10px;
+        }
 
         &:hover {
           box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
@@ -108,6 +132,9 @@
           .item-title {
             margin-bottom: 10px;
             color: #111827;
+            @include mobile {
+              font-size: 26px;
+            }
           }
 
           .detail-item {

@@ -1,3 +1,5 @@
+@import '../../global_styles/main.scss';
+
 .navbar {
   height: 81.5px;
   display: flex;
@@ -23,6 +25,57 @@
         color: #4b5563;
         font-size: 30px;
         font-weight: 500;
+
+        @include tablet {
+          font-size: 25px;
+        }
+
+        @include mobile {
+          display: none;
+        }
+      }
+
+      .welcome-text-mobile {
+        color: #4b5563;
+        font-size: 24px;
+        font-weight: 500;
+        display: none;
+        @include mobile {
+          display: block;
+        }
+      }
+
+      .sidebar-icon-container {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        cursor: pointer;
+        margin-right: 20px;
+
+        .sidebar-icon {
+          font-size: 30px;
+          color: #374151;
+          padding: 5px;
+        }
+
+        &:hover {
+          background-color: #dcfce7;
+          box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+            0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+          .sidebar-icon {
+            color: #14532d;
+          }
+        }
+
+        @include desktop {
+          display: none !important;
+        }
       }
     }
 
@@ -33,7 +86,7 @@
       .item {
         display: flex;
         align-items: center;
-        margin-right: 20px;
+        margin-left: 20px;
         position: relative;
 
         .navbar-counter {

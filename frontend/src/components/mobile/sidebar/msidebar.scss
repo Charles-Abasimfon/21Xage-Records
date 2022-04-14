@@ -1,14 +1,20 @@
-@import '../../global_styles/main.scss';
+@import '../../../global_styles/main.scss';
 
-.sidebar {
-  flex: 2;
+.mobile-sidebar {
   height: 100vh;
-  background-color: white;
   max-height: 1000px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-  @include tablet {
-    display: none;
+  z-index: 1000;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 81.5px;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  &.enter {
+    width: 230px;
   }
 
   hr {
@@ -70,7 +76,7 @@
         border: none;
         width: 100%;
         font-size: 15px;
-        transition: 0.3s;
+
         .sidebar-list-icon {
           color: #374151;
         }
@@ -79,6 +85,8 @@
           font-weight: 500;
           color: #374151;
           margin-left: 10px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
 
         &.active {
@@ -171,5 +179,9 @@
         }
       }
     }
+  }
+
+  @include desktop {
+    display: none !important;
   }
 }

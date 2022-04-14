@@ -1,3 +1,5 @@
+@import '../../global_styles/main.scss';
+
 .subscribers-list-page-content {
   height: calc(100% - 50px);
   padding-top: 10px;
@@ -22,6 +24,9 @@
         font-weight: 600;
         text-transform: uppercase;
         padding-left: 10px;
+        @include mobile {
+          font-size: 18px;
+        }
       }
 
       .title-icon {
@@ -29,6 +34,11 @@
         height: 45px;
         padding: 8px;
         border-radius: 50%;
+        @include mobile {
+          width: 35px;
+          height: 35px;
+          padding: 5px;
+        }
       }
     }
 
@@ -84,6 +94,10 @@
       background-color: #166534;
       border: 2px solid #166534;
       text-decoration: none;
+      @include mobile {
+        font-size: 16px;
+        padding: 4px 10px;
+      }
 
       &:hover {
         box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),

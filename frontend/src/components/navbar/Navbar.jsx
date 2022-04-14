@@ -1,20 +1,18 @@
 import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DarkModeContext } from '../../context/dark_mode/darkModeContext';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import FullscreenOutlinedIcon from '@mui/icons-material/FullscreenOutlined';
 import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import LocalPostOfficeOutlinedIcon from '@mui/icons-material/LocalPostOfficeOutlined';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CloseIcon from '@mui/icons-material/Close';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
+import MSidebar from '../mobile/sidebar/MSidebar';
 import './navbar.scss';
 
 function Navbar(props) {
@@ -22,9 +20,7 @@ function Navbar(props) {
   const menuContainerRef = useRef();
   const { darkMode, dispatch } = useContext(DarkModeContext);
   const { dispatch: authDispatch, admin } = useContext(AuthContext);
-
-  const [chatCount, setChatCount] = useState(10);
-  const [notificationCount, setNotificationCount] = useState(2);
+  const [displayMSidebar, setDisplayMSidebar] = useState(false);
 
   /* FOR ACCOUNT MENU */
   const [anchorEl, setAnchorEl] = useState(null);
@@ -94,7 +90,22 @@ function Navbar(props) {
     <div className='navbar' ref={menuContainerRef}>
       <div className='wrapper'>
         <div className='welcome'>
+          <div className='sidebar-icon-container'>
+            {!displayMSidebar ? (
+              <ListOutlinedIcon
+                className='sidebar-icon'
+                onClick={() => setDisplayMSidebar(true)}
+              />
+            ) : (
+              <CloseIcon
+                className='sidebar-icon'
+                onClick={() => setDisplayMSidebar(false)}
+              />
+            )}
+          </div>
+          <MSidebar displayMSidebar={displayMSidebar} />
           <h2 className='welcome-text'>Welcome {admin.name}!</h2>
+          <h2 className='welcome-text-mobile'>Welcome!</h2>
         </div>
         <div className='items'>
           <div className='item navbar-icon-container'>

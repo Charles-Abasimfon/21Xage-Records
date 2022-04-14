@@ -1,7 +1,10 @@
+@import '../../global_styles/main.scss';
+
 .add-recorder-container {
   max-height: 100%;
   overflow-y: scroll;
   padding-bottom: 30px;
+  padding: 0px 10px;
 
   .MuiCircularProgress-root {
     color: white;
@@ -28,6 +31,9 @@
         text-transform: uppercase;
         padding-left: 10px;
         color: #14532d;
+        @include mobile {
+          font-size: 18px;
+        }
       }
 
       .title-icon {
@@ -37,6 +43,20 @@
         border-radius: 50%;
         color: #14532d;
         background-color: #dcfce7;
+        @include mobile {
+          width: 35px;
+          height: 35px;
+          padding: 5px;
+        }
+      }
+    }
+
+    .btn-container {
+      .btn {
+        @include mobile {
+          font-size: 16px;
+          padding: 4px 10px;
+        }
       }
     }
   }
@@ -51,6 +71,7 @@
     border-radius: 10px;
     padding: 20px;
     padding-bottom: 50px;
+    margin-bottom: 30px;
 
     &:hover {
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
@@ -107,6 +128,17 @@
         margin-top: 5px;
         padding-left: 20px;
         padding-right: 20px;
+        @include tablet {
+          width: 50%;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        @include mobile {
+          width: 100%;
+          padding-left: 0px;
+          padding-right: 0px;
+        }
 
         &.textarea {
           width: 100%;

@@ -1,3 +1,4 @@
+@import '../../../global_styles/main.scss';
 .datatable {
   height: 100%;
 
@@ -10,6 +11,9 @@
     font-family: inherit;
     font-size: 18px;
     font-weight: 500;
+    @include mobile {
+      font-size: 16px;
+    }
   }
 
   .recorder-status-container {

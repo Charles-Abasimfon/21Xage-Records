@@ -36,3 +36,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
+
+/* MIXINS - MEDIA QUERIES */
+@mixin tablet {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}

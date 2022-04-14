@@ -41,13 +41,11 @@ function Chart() {
     <div className='chart'>
       <div className='title'>Last 6 Months (Revenue) In USD</div>
       <ResponsiveContainer
-        width='100%'
+        width={'100%'}
         aspect={2 / 1}
         className='chart-container'
       >
         <AreaChart
-          width={730}
-          height={250}
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >

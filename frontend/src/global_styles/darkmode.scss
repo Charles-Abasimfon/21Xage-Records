@@ -1,3 +1,4 @@
+@import '../global_styles/main.scss';
 /* DARK MODE CSS SETTINGS */
 
 /* -----------  INDEX  ------------- */
@@ -13,6 +14,7 @@
 /* 10. VIEW SUBSCRIBER PAGE*/
 /* 11. LOGIN PAGE */
 /* 12. VIEW RECORDER PAGE & PROFILE PAGE */
+/* 13. MOBILE SIDEBAR */
 /* --------------------------------- */
 
 /* 1. GLOBALS & VARIABLES*/
@@ -47,18 +49,26 @@ $dark-seconday-gray: #6b7280;
     background-color: $dark-card-color;
     border-bottom: 2px solid $dark-bg-color;
     .wrapper {
-      .search {
-        background-color: $dark-bg-color;
-        border: 0.5px solid $dark-bg-color;
-        input {
-          color: $dark-text-color;
-          &::placeholder {
+      .welcome {
+        .welcome-text,
+        .welcome-text-mobile {
+          color: $dark-seconday-gray;
+        }
+        .sidebar-icon-container {
+          background-color: $dark-bg-color;
+          box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+          cursor: pointer;
+          .sidebar-icon {
             color: $dark-text-gray-color;
           }
-        }
-
-        .navbar-search-icon {
-          color: $dark-text-gray-color;
+          &:hover {
+            background-color: #dcfce7;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+              0 1px 2px -1px rgb(0 0 0 / 0.1);
+            .sidebar-icon {
+              color: #14532d;
+            }
+          }
         }
       }
 
@@ -483,6 +493,75 @@ $dark-seconday-gray: #6b7280;
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  /* 13. MOBILE SIDEBAR */
+  .mobile-sidebar {
+    background-color: $dark-card-color;
+    &.enter {
+      width: 230px;
+    }
+    hr {
+      border: 0.5px solid $dark-bg-color;
+    }
+    .sidebar-center {
+      ul {
+        .title {
+          color: $dark-seconday-gray;
+        }
+        a,
+        button {
+          .sidebar-list-icon {
+            color: $dark-text-gray-color;
+          }
+          span {
+            color: $dark-text-gray-color;
+          }
+          &.active {
+            background-color: #86efac;
+            .sidebar-list-icon {
+              color: #14532d;
+            }
+            span {
+              color: #14532d;
+            }
+          }
+          &:hover {
+            background-color: $dark-bg-color;
+            .sidebar-list-icon {
+              color: $dark-text-gray-color;
+            }
+            span {
+              color: $dark-text-gray-color;
+            }
+            &.active {
+              background-color: #86efac;
+              .sidebar-list-icon {
+                color: #14532d;
+              }
+              span {
+                color: #14532d;
+              }
+            }
+          }
+        }
+      }
+    }
+    .sidebar-bottom {
+      .color-mode-title {
+        color: $dark-seconday-gray;
+      }
+      .color-mode {
+        .color-option {
+          &:nth-child(1) {
+            background-color: #ffffff;
+          }
+          &:nth-child(2) {
+            background-color: #111111;
           }
         }
       }
