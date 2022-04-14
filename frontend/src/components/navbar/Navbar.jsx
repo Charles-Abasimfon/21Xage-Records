@@ -103,9 +103,22 @@ function Navbar(props) {
               />
             )}
           </div>
-          <MSidebar displayMSidebar={displayMSidebar} />
-          <h2 className='welcome-text'>Welcome {admin.name}!</h2>
-          <h2 className='welcome-text-mobile'>Welcome!</h2>
+          <MSidebar
+            displayMSidebar={displayMSidebar}
+            setDisplayMSidebar={setDisplayMSidebar}
+          />
+          <h2
+            className='welcome-text'
+            onClick={() => navigate('/', { replace: true })}
+          >
+            Welcome {admin.name}!
+          </h2>
+          <h2
+            className='welcome-text-mobile'
+            onClick={() => navigate('/', { replace: true })}
+          >
+            Welcome!
+          </h2>
         </div>
         <div className='items'>
           <div className='item navbar-icon-container'>

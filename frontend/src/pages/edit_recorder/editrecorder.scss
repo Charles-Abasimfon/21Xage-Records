@@ -21,6 +21,10 @@
     padding-bottom: 20px;
     padding-left: 50px;
     padding-right: 50px;
+    @include mobile {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
 
     .title-container {
       display: flex;

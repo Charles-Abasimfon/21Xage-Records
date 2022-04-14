@@ -22,6 +22,11 @@
       align-items: center;
     }
 
+    @include mobile {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
     .title-container {
       display: flex;
       align-items: center;

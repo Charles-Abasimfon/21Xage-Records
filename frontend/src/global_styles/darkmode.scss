@@ -25,6 +25,16 @@ $dark-text-gray-color: #d1d5db;
 $dark-seconday-gray: #6b7280;
 .app.dark {
   background-color: $dark-bg-color !important;
+
+  .css-levciy-MuiTablePagination-displayedRows {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    color: $dark-text-gray-color;
+    @include mobile {
+      font-size: 16px;
+    }
+  }
 }
 
 .app.dark {

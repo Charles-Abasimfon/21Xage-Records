@@ -12,7 +12,7 @@ function ActiveSubscribers() {
           <h2>Active Subscribers</h2>
         </div>
         <Link className='btn' to='/subscribers/add-new'>
-          Add Subscriber
+          Add New
         </Link>
       </div>
 

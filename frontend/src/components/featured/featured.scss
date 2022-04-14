@@ -1,3 +1,4 @@
+@import '../../global_styles/main.scss';
 .featured {
   background-color: white;
   flex: 2;
@@ -52,6 +53,9 @@
       width: 120px;
       height: 120px;
       margin-top: 10px;
+      @include mobile {
+        padding-top: 20px;
+      }
     }
 
     .title {
@@ -64,6 +68,9 @@
 
     .amount {
       font-size: 30px;
+      @include mobile {
+        font-size: 35px;
+      }
     }
 
     .desc {

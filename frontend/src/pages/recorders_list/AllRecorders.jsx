@@ -11,7 +11,7 @@ function AllRecorders() {
           <h2>All Recorders</h2>
         </div>
         <Link className='btn' to='/recorders/add-new'>
-          Add Recorder
+          Add New
         </Link>
       </div>
 

@@ -13,7 +13,7 @@ function AllSubscribers() {
           <h2>All Subscribers</h2>
         </div>
         <Link className='btn' to='/subscribers/add-new'>
-          Add Subscriber
+          Add New
         </Link>
       </div>
 

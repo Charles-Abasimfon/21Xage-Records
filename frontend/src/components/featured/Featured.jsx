@@ -66,7 +66,7 @@ function Featured() {
         <p className='desc'>
           Previous transactions processing. Last payments may not be included.
         </p>
-        <div className='summary'>
+        {/*         <div className='summary'>
           <div className='item'>
             <div className='item-title'>Target</div>
             <div
@@ -112,7 +112,7 @@ function Featured() {
               <div className='result-amount'>${lastMonthDetails.value}k</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

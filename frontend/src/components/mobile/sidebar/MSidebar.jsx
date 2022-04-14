@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DarkModeContext } from '../../../context/dark_mode/darkModeContext';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
@@ -9,8 +9,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import logo from '../../../assets/logo/21xage.webp';
@@ -20,9 +18,13 @@ import { logout } from '../../../context/authContext/AuthActions';
 import 'react-custom-scroll/dist/customScroll.css';
 import './msidebar.scss';
 
-function MSidebar({ displayMSidebar }) {
+function MSidebar({ displayMSidebar, setDisplayMSidebar }) {
   const { dispatch } = useContext(DarkModeContext);
   const { admin, dispatch: authDispatch } = useContext(AuthContext);
+
+  const closeSidebar = () => {
+    setDisplayMSidebar(false);
+  };
 
   return (
     <div className={`mobile-sidebar ${displayMSidebar && 'enter'}`}>
@@ -41,6 +43,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <DashboardIcon className='sidebar-list-icon' />
               <span>Dashboard</span>
@@ -49,6 +52,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/subscribers/all'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <PeopleAltOutlinedIcon className='sidebar-list-icon' />
               <span>All Subscribers</span>
@@ -56,6 +60,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/subscribers/active'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <CheckIcon className='sidebar-list-icon' />
               <span>Active</span>
@@ -63,6 +68,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/subscribers/almost-expired'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <AccessTimeIcon className='sidebar-list-icon' />
               <span>Almost Expired</span>
@@ -70,6 +76,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/subscribers/expired'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <ClearIcon className='sidebar-list-icon' />
               <span>Expired</span>
@@ -77,6 +84,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/subscribers/add-new'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <AddReactionIcon className='sidebar-list-icon' />
               <span>Add Subscriber</span>
@@ -89,6 +97,7 @@ function MSidebar({ displayMSidebar }) {
                   className={({ isActive }) =>
                     isActive ? 'active' : undefined
                   }
+                  onClick={closeSidebar}
                 >
                   <BadgeOutlinedIcon className='sidebar-list-icon' />
                   <span>Recorders</span>
@@ -98,6 +107,7 @@ function MSidebar({ displayMSidebar }) {
                   className={({ isActive }) =>
                     isActive ? 'active' : undefined
                   }
+                  onClick={closeSidebar}
                 >
                   <AddTaskIcon className='sidebar-list-icon' />
                   <span>Add Recorder</span>
@@ -108,6 +118,7 @@ function MSidebar({ displayMSidebar }) {
             <NavLink
               to='/profile'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <AccountCircleOutlinedIcon className='sidebar-list-icon' />
               <span>My Profile</span>
