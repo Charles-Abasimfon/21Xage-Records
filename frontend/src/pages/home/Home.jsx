@@ -19,6 +19,8 @@ function Home(props) {
   const [subscribers, setSubscribers] = useState(undefined);
   const { admin } = useContext(AuthContext);
 
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
   useEffect(() => {
     if (pathname === '/') {
       getAllSubscribers(admin.token)
@@ -30,6 +32,17 @@ function Home(props) {
         });
     }
   }, [pathname]);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowHeight(window.innerHeight);
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        setWindowHeight(window.innerHeight);
+      });
+    };
+  }, [window.innerHeight]);
 
   const getNumberOfSubscribersInCategory = (category) => {
     if (!subscribers) return '...';
@@ -58,7 +71,10 @@ function Home(props) {
       <Sidebar />
       <div className='dashboard-container'>
         <Navbar appRef={appRef} />
-        <div className='dashboard-content'>
+        <div
+          className='dashboard-content'
+          style={{ height: `calc(${windowHeight}px - 81.5px)` }}
+        >
           {/* ///// USE OF OUTLET ///// */}
           <Outlet />
 

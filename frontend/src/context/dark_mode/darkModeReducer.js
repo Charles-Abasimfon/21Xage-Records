@@ -12,6 +12,7 @@ const DarkModeReducer = (state, action) => {
         darkMode: true,
       };
     default:
+      localStorage.setItem('prefers-dark-mode', false);
       return state;
   }
 };

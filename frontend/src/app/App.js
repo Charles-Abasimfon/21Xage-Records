@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { DarkModeContext } from '../context/dark_mode/darkModeContext';
 import { AuthContext } from '../context/authContext/AuthContext';
 import Home from '../pages/home/Home';
@@ -27,16 +27,14 @@ import ProtectedRoute from '../protect/ProtectedRoutes';
 import PreventRecorders from '../protect/PreventRecorders';
 import '../global_styles/main.scss';
 import '../global_styles/darkmode.scss';
-import { createTheme } from '@mui/material/styles';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
   const { admin } = useContext(AuthContext);
 
   const appRef = useRef();
-
   return (
-    <div className={darkMode ? 'app dark' : 'app'} ref={appRef}>
+    <div className={`app ${darkMode ? 'dark' : ''}`} ref={appRef}>
       <Router>
         <Routes>
           <Route
