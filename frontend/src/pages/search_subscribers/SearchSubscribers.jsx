@@ -33,7 +33,7 @@ function SearchSubscribers() {
         <div className='search'>
           <input
             type='search'
-            placeholder='Search by name, telegram username, email, phone number ...'
+            placeholder='Search by name, telegram, email, phone number ...'
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             onKeyPress={handleEnterKeyPress}
