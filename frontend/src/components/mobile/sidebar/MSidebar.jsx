@@ -102,6 +102,7 @@ function MSidebar({ displayMSidebar, setDisplayMSidebar }) {
             <NavLink
               to='/subscribers/search'
               className={({ isActive }) => (isActive ? 'active' : undefined)}
+              onClick={closeSidebar}
             >
               <SearchOutlinedIcon className='sidebar-list-icon' />
               <span>Search</span>
