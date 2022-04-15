@@ -5,6 +5,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { AuthContext } from '../../context/authContext/AuthContext';
+import BrowserNotSupportedIcon from '@mui/icons-material/BrowserNotSupported';
+
 import Loader from '../loader/Loader';
 import './datatable.scss';
 import {
@@ -161,6 +163,13 @@ function Datatable(props) {
           rowsPerPageOptions={[100]}
           className='datatable-grid'
           getRowId={(subscriber) => subscriber.shorter_id}
+          components={{
+            NoRowsOverlay: () => (
+              <div className='empty-overlay'>
+                <BrowserNotSupportedIcon className='empty-overlay-icon' />
+              </div>
+            ),
+          }}
         />
       )}
     </div>

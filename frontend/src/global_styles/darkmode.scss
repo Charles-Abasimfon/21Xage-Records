@@ -15,6 +15,7 @@
 /* 11. LOGIN PAGE */
 /* 12. VIEW RECORDER PAGE & PROFILE PAGE */
 /* 13. MOBILE SIDEBAR */
+/* 14. SEARCH SUBSCRIBERS PAGE */
 /* --------------------------------- */
 
 /* 1. GLOBALS & VARIABLES*/
@@ -595,6 +596,105 @@ $dark-seconday-gray: #6b7280;
       @include tablet {
         font-size: 18px !important;
         color: $dark-text-color !important;
+      }
+    }
+
+    /* 14. SEARCH SUBSCRIBERS PAGE */
+    .search-subscribers-list-page-content {
+      .top {
+        .search {
+          border: 0.5px solid $dark-card-color;
+          background-color: $dark-card-color;
+          input {
+            color: $dark-text-color;
+            &::placeholder {
+              color: $dark-seconday-gray;
+            }
+          }
+          .navbar-search-icon {
+            color: $dark-text-gray-color;
+          }
+        }
+      }
+    }
+
+    .search-datatable {
+      .datatable-grid {
+        color: #ffffff;
+        font-weight: 200;
+        border: 1px solid $dark-bg-color;
+        font-size: 16px;
+
+        .name {
+          a {
+            color: $dark-text-gray-color;
+            text-decoration: none;
+            &:hover {
+              color: $dark-text-color;
+            }
+          }
+        }
+
+        .css-levciy-MuiTablePagination-displayedRows,
+        .MuiTablePagination-actions * {
+          color: $dark-text-gray-color;
+        }
+
+        .MuiDataGrid-columnHeaders,
+        .MuiDataGrid-cell {
+          border-bottom: 1px solid $dark-card-color;
+        }
+
+        .MuiDataGrid-footerContainer {
+          border-top: 1px solid $dark-card-color;
+        }
+
+        .MuiButtonBase-root {
+          color: $dark-text-gray-color;
+          background-color: $dark-card-color;
+          &:hover {
+            color: #14532d;
+            background-color: #dcfce7;
+          }
+        }
+      }
+      .subscriber-status-container {
+        &.active {
+          color: #14532d;
+          background-color: #86efac;
+        }
+        &.pending {
+          color: #a16207;
+          background-color: #fde047;
+        }
+        &.expired {
+          color: #b91c1c;
+          background-color: #fda4af;
+        }
+      }
+      .telegram-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #1d4ed8;
+          background-color: #bfdbfe;
+        }
+      }
+      .edit-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
+      }
+      .view-icon {
+        color: $dark-text-color;
+        background-color: $dark-card-color;
+        &:hover {
+          color: #14532d;
+          background-color: #dcfce7;
+        }
       }
     }
   }

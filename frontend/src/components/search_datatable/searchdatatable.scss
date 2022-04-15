@@ -1,10 +1,25 @@
-@import '../../../global_styles/main.scss';
-.datatable {
+@import '../../global_styles/main.scss';
+
+.search-datatable {
   height: 100%;
+  * {
+    font-family: 'Outfit', sans-serif !important;
+    box-sizing: border-box;
+    margin: 0;
+  }
 
   .datatable-grid {
     font-family: inherit;
     font-size: 16px;
+
+    .MuiButtonBase-root {
+      color: #374151;
+      background-color: #eef1f0;
+      &:hover {
+        color: #14532d;
+        background-color: #dcfce7;
+      }
+    }
 
     .empty-overlay {
       width: 100%;
@@ -40,7 +55,7 @@
     }
   }
 
-  .recorder-status-container {
+  .subscriber-status-container {
     padding: 5px 10px;
     border-radius: 5px;
     max-width: max-content;
@@ -49,9 +64,30 @@
       color: #14532d;
       background-color: #86efac;
     }
-    &.suspended {
+    &.pending {
+      color: #a16207;
+      background-color: #fde047;
+    }
+    &.expired {
       color: #b91c1c;
       background-color: #fda4af;
+    }
+  }
+
+  .telegram-icon {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 5px;
+    padding-right: 8px;
+    margin: 0px 5px;
+    margin-right: 0px;
+    color: #374151;
+    background-color: #eef1f0;
+
+    &:hover {
+      color: #1d4ed8;
+      background-color: #bfdbfe;
     }
   }
 

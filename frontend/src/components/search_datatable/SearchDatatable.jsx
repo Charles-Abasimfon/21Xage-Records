@@ -1,15 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import BrowserNotSupportedIcon from '@mui/icons-material/BrowserNotSupported';
-
-import TelegramIcon from '@mui/icons-material/Telegram';
-import { AuthContext } from '../../../context/authContext/AuthContext';
-import { getAllRecorders } from '../../../apicalls/recorderCalls';
-import Loader from '../../loader/Loader';
-import './recorderstable.scss';
+import Loader from '../loader/Loader';
+import './searchdatatable.scss';
 
 /* TABLE COLUMNS SETTINGS -- START */
 const columns = [
@@ -20,24 +16,25 @@ const columns = [
     renderCell: (params) => {
       return (
         <div className='name'>
-          <Link to={`/recorders/${params.row._id}`}>{params.row.name}</Link>
+          <Link to={`/subscribers/${params.row._id}`}>{params.row.name}</Link>
         </div>
       );
     },
   },
+  { field: 'country', headerName: 'Country', width: 120 },
   { field: 'email', headerName: 'Email', width: 250 },
-  { field: 'phone', headerName: 'Phone', width: 160 },
-  { field: 'telegram', headerName: 'Telegram', width: 120 },
+  { field: 'telegram', headerName: 'Telegram', width: 130 },
   {
     field: 'status',
     headerName: 'Status',
-    width: 130,
+    width: 160,
     renderCell: (params) => {
       return (
         <div
-          className={`recorder-status-container 
+          className={`subscriber-status-container 
                 ${params.row.status === 'Active' && 'active'} 
-                ${params.row.status === 'Suspended' && 'suspended'}`}
+                ${params.row.status === 'Almost Expired' && 'pending'} 
+                ${params.row.status === 'Expired' && 'expired'}`}
         >
           {params.row.status}
         </div>
@@ -45,23 +42,23 @@ const columns = [
     },
   },
   {
-    field: 'added',
-    headerName: 'Added',
-    width: 110,
+    field: 'lastSubscriptionDate',
+    headerName: 'Last Subscription',
+    width: 150,
   },
   {
     field: 'actions',
     headerName: 'Actions',
     sortable: false,
     filterable: false,
-    width: 150,
+    width: 160,
     renderCell: (params) => {
       return (
         <>
-          <Link to={`/recorders/${params.row._id}`}>
+          <Link to={`/subscribers/${params.row._id}`}>
             <VisibilityIcon className='view-icon' />
           </Link>
-          <Link to={`/recorders/edit/${params.row._id}`}>
+          <Link to={`/subscribers/edit/${params.row._id}`}>
             <EditIcon className='edit-icon' />
           </Link>
           {params.row.telegram && (
@@ -79,32 +76,21 @@ const columns = [
 ];
 /* TABLE COLUMNS SETTINGS -- END */
 
-function RecordersTable() {
-  const { admin } = useContext(AuthContext);
-  const [recorders, setRecorders] = useState(undefined);
-
-  useEffect(() => {
-    getAllRecorders(admin.token)
-      .then((res) => {
-        setRecorders(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+function Datatable(props) {
+  const { subscribers, setSubscribers } = props;
 
   return (
-    <div className='datatable'>
-      {!recorders ? (
+    <div className='search-datatable'>
+      {!subscribers ? (
         <Loader />
       ) : (
         <DataGrid
-          rows={recorders}
+          rows={subscribers}
           columns={columns}
           pageSize={100}
           rowsPerPageOptions={[100]}
           className='datatable-grid'
-          getRowId={(recorder) => recorder.shorter_id}
+          getRowId={(subscriber) => subscriber.shorter_id}
           components={{
             NoRowsOverlay: () => (
               <div className='empty-overlay'>
@@ -118,4 +104,4 @@ function RecordersTable() {
   );
 }
 
-export default RecordersTable;
+export default Datatable;

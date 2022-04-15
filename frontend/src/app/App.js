@@ -15,6 +15,7 @@ import ExpiredSubscribers from '../pages/subscribers_list/ExpiredSubscribers';
 import LatestSubscribers from '../pages/subscribers_list/LatestSubscribers';
 import Login from '../pages/login/Login';
 import AddSubscriber from '../pages/add_subscriber/AddSubscriber';
+import SearchSubscribers from '../pages/search_subscribers/SearchSubscribers';
 import SingleSubscriber from '../pages/single_subscriber/SingleSubscriber';
 import AllRecorders from '../pages/recorders_list/AllRecorders';
 import SingleRecorder from '../pages/single_recorder/SingleRecorder';
@@ -73,6 +74,7 @@ function App() {
               />
               <Route path='expired' element={<ExpiredSubscribers />} />
               <Route path='latest' element={<LatestSubscribers />} />
+              <Route path='search' element={<SearchSubscribers />} />
               <Route path=':subscriberId' element={<SingleSubscriber />} />
               <Route path='add-new' element={<AddSubscriber />} />
               <Route path='edit/:subscriberId' element={<EditSubscriber />} />

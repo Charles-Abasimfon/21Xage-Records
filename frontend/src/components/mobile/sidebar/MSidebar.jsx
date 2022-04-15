@@ -12,6 +12,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import logo from '../../../assets/logo/21xage.webp';
 import CustomScroll from 'react-custom-scroll';
 import { AuthContext } from '../../../context/authContext/AuthContext';
@@ -97,6 +98,13 @@ function MSidebar({ displayMSidebar, setDisplayMSidebar }) {
             >
               <AddReactionIcon className='sidebar-list-icon' />
               <span>Add Subscriber</span>
+            </NavLink>
+            <NavLink
+              to='/subscribers/search'
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
+              <SearchOutlinedIcon className='sidebar-list-icon' />
+              <span>Search</span>
             </NavLink>
             {admin.admin_level && admin.admin_level === 'Administrator' && (
               <>

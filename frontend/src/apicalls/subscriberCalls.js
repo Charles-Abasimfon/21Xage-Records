@@ -194,3 +194,22 @@ export const getLatestSubscribers = async (token) => {
     console.log(error.response.data.message);
   }
 };
+
+/* 
+ desc: SEARCH SUBSCRIBERS BY name, phone, telegram, email
+*/
+export const searchSubscribers = async (token, searchQuery) => {
+  try {
+    const response = await axios.get(
+      `/api/subscriber/search-subscribers/?search=${searchQuery}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data.message);
+  }
+};

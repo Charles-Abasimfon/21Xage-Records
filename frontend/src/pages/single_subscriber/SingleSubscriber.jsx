@@ -33,7 +33,7 @@ function SingleSubscriber() {
   const handleBackButtonClick = () => {
     /* This 'if else statement' checks if there is a previous page the user opened, to go back to. Or if user opened this page directly and in this case there is no previous page, then send user back to home page when they click on the back button */
     if (window.history.state && window.history.state.idx > 0) {
-      navigate(-2);
+      navigate(-1);
     } else {
       navigate('/', { replace: true }); // the current entry in the history stack will be replaced with the new one with { replace: true }
     }

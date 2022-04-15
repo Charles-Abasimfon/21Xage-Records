@@ -7,6 +7,7 @@ import FullscreenOutlinedIcon from '@mui/icons-material/FullscreenOutlined';
 import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -121,6 +122,12 @@ function Navbar(props) {
           </h2>
         </div>
         <div className='items'>
+          <div className='item navbar-icon-container'>
+            <SearchOutlinedIcon
+              className='navbar-icon'
+              onClick={() => navigate('/subscribers/search', { replace: true })}
+            />
+          </div>
           <div className='item navbar-icon-container'>
             {darkMode ? (
               <DarkModeOutlinedIcon

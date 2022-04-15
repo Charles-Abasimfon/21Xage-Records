@@ -12,6 +12,20 @@
     font-family: inherit;
     font-size: 16px;
 
+    .empty-overlay {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .empty-overlay-icon {
+        font-size: 100px;
+        color: #374151;
+      }
+    }
+
     .MuiButtonBase-root {
       color: #374151;
       background-color: #eef1f0;

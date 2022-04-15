@@ -284,6 +284,40 @@ const getLatestSubscribers = asyncHandler(async (req, res) => {
     });
 });
 
+//@desc Search For Subscribers based on name,email,phone,telegram
+//@route GET /api/subscriber/search-subscribers
+//@access Private
+const searchSubscribers = asyncHandler(async (req, res) => {
+  const { search } = req.query;
+
+  if (!search) {
+    return res.status(200).json([]);
+  }
+
+  const subscribers = await Subscriber.find({
+    $or: [
+      { name: { $regex: search, $options: 'i' } },
+      { email: { $regex: search, $options: 'i' } },
+      { phone: { $regex: search, $options: 'i' } },
+      { telegram: { $regex: search, $options: 'i' } },
+    ],
+  })
+    .lean()
+    .exec(function (err, subscribers) {
+      if (err) {
+        res.status(400);
+        throw new Error('Could not get subscribers');
+      }
+      //Loop through all subscribers and add the status to each subscriber
+      subscribers.forEach((subscriber) => {
+        subscriber.status = getSubscriberStatus(
+          subscriber.lastSubscriptionDate
+        );
+      });
+      res.status(200).json(subscribers);
+    });
+});
+
 module.exports = {
   addSubscriber,
   getAllSubscribers,
@@ -293,4 +327,5 @@ module.exports = {
   getAllAlmostExpiredSubscribers,
   getAllExpiredSubscribers,
   getLatestSubscribers,
+  searchSubscribers,
 };

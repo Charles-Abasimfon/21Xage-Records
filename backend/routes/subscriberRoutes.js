@@ -9,6 +9,7 @@ const {
   getAllAlmostExpiredSubscribers,
   getAllExpiredSubscribers,
   getLatestSubscribers,
+  searchSubscribers,
 } = require('../controllers/subscriberController');
 // Importing protect middleware
 const { protect } = require('../middleware/authMiddleware');
@@ -25,5 +26,6 @@ router.get(
 );
 router.get('/get-all-expired-subscribers', protect, getAllExpiredSubscribers);
 router.get('/get-latest-subscribers', protect, getLatestSubscribers);
+router.get('/search-subscribers', protect, searchSubscribers);
 
 module.exports = router;
