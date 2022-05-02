@@ -99,10 +99,11 @@ function Home(props) {
                   counter={getNumberOfSubscribersInCategory('Expired')}
                 />
               </div>
-              <div className='charts'>
+              {/* The below is for displaying charts of revenue */}
+              {/* <div className='charts'>
                 <Featured />
                 <Chart />
-              </div>
+              </div> */}
             </div>
           )}
           {location.pathname == 'home' && (
