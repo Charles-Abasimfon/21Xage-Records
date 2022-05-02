@@ -154,6 +154,12 @@ function SingleSubscriber() {
                     </span>
                   </div>
                   <div className='detail-item'>
+                    <span className='item-key'>Subscriber Tag:</span>
+                    <span className='item-value'>
+                      {subscriberInfo.subscriberTag}
+                    </span>
+                  </div>
+                  <div className='detail-item'>
                     <span className='item-key'>Email:</span>
                     <span className='item-value'>{subscriberInfo.email}</span>
                   </div>

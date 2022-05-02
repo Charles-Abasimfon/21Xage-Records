@@ -32,6 +32,7 @@ function EditSubscriber() {
           address: res.address,
           country: res.country,
           lastSubscriptionDate: res.lastSubscriptionDate,
+          subscriptionTag: res.subscriptionTag,
           additionalInfo: res.additionalInfo,
         });
       })
@@ -130,14 +131,8 @@ function EditSubscriber() {
                 />
               </div>
               <div className='form-group'>
-                <label htmlFor='email'>
-                  Email Address{' '}
-                  <sup style={{ marginLeft: '5px', color: '#dc2626' }}>
-                    (required)
-                  </sup>
-                </label>
+                <label htmlFor='email'>Email Address </label>
                 <input
-                  required={true}
                   type='email'
                   name='email'
                   id='email'
@@ -210,6 +205,17 @@ function EditSubscriber() {
                   name='lastSubscriptionDate'
                   min='2022-01-01'
                   value={formInputs.lastSubscriptionDate}
+                  onChange={(event) => handleFormInputChange(event)}
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='subscriptionTag'>Subscription Tag</label>
+                <input
+                  type='text'
+                  name='subscriptionTag'
+                  id='subscriptionTag'
+                  placeholder=''
+                  value={formInputs.subscriptionTag}
                   onChange={(event) => handleFormInputChange(event)}
                 />
               </div>

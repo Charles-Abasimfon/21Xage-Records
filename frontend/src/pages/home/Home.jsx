@@ -110,7 +110,7 @@ function Home(props) {
             <div className='home-content'>
               <div className='widgets'>
                 <Widget type='all-subscribers' />
-                <Widget type='active-subscribers' />
+                <Widget type='active-subscribers' />3
                 <Widget type='abouttoexpire-subscribers' />
                 <Widget type='expired-subscribers' />
               </div>

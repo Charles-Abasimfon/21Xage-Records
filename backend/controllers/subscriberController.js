@@ -14,18 +14,13 @@ const {
 //@route POST /api/subscriber/add
 //@access Private
 const addSubscriber = asyncHandler(async (req, res) => {
-  const { name, email, telegram, subscriptionDate } = req.body;
+  const { name, telegram, subscriptionDate } = req.body;
   // Check for missing fields: name, email, telegram
-  if (!name || !email || !telegram || !subscriptionDate) {
+  if (!name || !telegram || !subscriptionDate) {
     res.status(400);
     throw new Error('Please enter all required fields');
   }
-  // Check for existing subscriber with same email
-  const subscriberExists = await Subscriber.findOne({ email });
-  if (subscriberExists) {
-    res.status(400);
-    throw new Error('A subscriber with this email already exists');
-  }
+
   //Create subscriber
   const data = {
     ...req.body,
@@ -102,13 +97,8 @@ const getSubscriberInfoById = asyncHandler(async (req, res) => {
 const updateSubscriberDataById = asyncHandler(async (req, res) => {
   const subscriberId = req.query.id;
   const updateJustStatus = req.query.updateJustStatus;
-  const {
-    name,
-    email,
-    telegram,
-    lastSubscriptionDate,
-    newSubscriptionDatesArray,
-  } = req.body;
+  const { name, telegram, lastSubscriptionDate, newSubscriptionDatesArray } =
+    req.body;
 
   // Check for missing id query
   if (!subscriberId) {
@@ -129,18 +119,9 @@ const updateSubscriberDataById = asyncHandler(async (req, res) => {
   // If updateJustStatus !== 'true', Do the following:
   if (updateJustStatus !== 'true') {
     // Check for missing required fields: name, email, password, telegram
-    if (!name || !email || !telegram || !lastSubscriptionDate) {
+    if (!name || !telegram || !lastSubscriptionDate) {
       res.status(400);
       throw new Error('Please enter all required fields');
-    }
-    // Check for existing subscriber with new email
-    const subscriberExists = await Subscriber.findOne({ email });
-    if (subscriberExists) {
-      //Check if subscriber is the same as the subscriber to be updated
-      if (subscriberExists._id.toString() !== subscriberId.toString()) {
-        res.status(400);
-        throw new Error('A subscriber with this email already exists');
-      }
     }
     //Check if lastSubscriptionDate has been changed
     if (subscriber.lastSubscriptionDate !== lastSubscriptionDate) {
@@ -300,6 +281,7 @@ const searchSubscribers = asyncHandler(async (req, res) => {
       { email: { $regex: search, $options: 'i' } },
       { phone: { $regex: search, $options: 'i' } },
       { telegram: { $regex: search, $options: 'i' } },
+      { subscriptionTag: { $regex: search, $options: 'i' } },
     ],
   })
     .lean()

@@ -20,8 +20,6 @@ const subscribersSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, 'Please add an email'],
-      unique: true,
     },
     phone: {
       type: String,
@@ -50,6 +48,9 @@ const subscribersSchema = mongoose.Schema(
       required: [true, 'Please add a date'],
       default: todaysDate,
       immutable: true,
+    },
+    subscriptionTag: {
+      type: String,
     },
     additionalInfo: {
       type: String,
