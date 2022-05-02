@@ -154,9 +154,9 @@ function SingleSubscriber() {
                     </span>
                   </div>
                   <div className='detail-item'>
-                    <span className='item-key'>Subscriber Tag:</span>
+                    <span className='item-key'>Subscription Tag:</span>
                     <span className='item-value'>
-                      {subscriberInfo.subscriberTag}
+                      {subscriberInfo.subscriptionTag}
                     </span>
                   </div>
                   <div className='detail-item'>
