@@ -113,10 +113,11 @@ function Home(props) {
                 <Widget type='abouttoexpire-subscribers' />
                 <Widget type='expired-subscribers' />
               </div>
-              <div className='charts'>
+              {/* The below is for displaying charts of revenue */}
+              {/* <div className='charts'>
                 <Featured />
                 <Chart />
-              </div>
+              </div> */}
             </div>
           )}
         </div>
