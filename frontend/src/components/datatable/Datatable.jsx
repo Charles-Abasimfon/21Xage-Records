@@ -32,7 +32,7 @@ const columns = [
     },
   },
   { field: 'country', headerName: 'Country', width: 120 },
-  { field: 'subscriberTag', headerName: 'Subscriber Tag', width: 250 },
+  { field: 'subscriptionTag', headerName: 'Subscription Tag', width: 250 },
   { field: 'telegram', headerName: 'Telegram', width: 130 },
   {
     field: 'status',
