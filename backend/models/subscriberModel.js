@@ -20,6 +20,7 @@ const subscribersSchema = mongoose.Schema(
     },
     email: {
       type: String,
+      unique: false,
     },
     phone: {
       type: String,
